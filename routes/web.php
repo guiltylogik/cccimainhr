@@ -25,10 +25,10 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/members', function () {
-    return view('members');
+    return view('members.members');
 });
 Route::get('/addmember', function () {
-    return view('addmember');
+    return view('members.addmember');
 });
 Route::get('/haddassah', function () {
     return view('haddassah');
