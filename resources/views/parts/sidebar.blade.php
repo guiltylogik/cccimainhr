@@ -36,9 +36,9 @@
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header ">Members</h6>
-      <a class="collapse-item" href="members"><i class="fas fa-users fa-sm"></i> Members</a>
-      <a class="collapse-item" href="addmember"><i class="fas fa-user-plus fa-sm "></i> Add Member(s)</a>
-      <a class="collapse-item" href="members"><i class="fas fa-wrench fa-sm "></i> Edit Member(s) Records</a>
+      <a class="collapse-item" href="/members"><i class="fas fa-users fa-sm"></i> Members</a>
+      <a class="collapse-item" href="/members/create"><i class="fas fa-user-plus fa-sm "></i> Add Member(s)</a>
+      <a class="collapse-item" href="/members/edit"><i class="fas fa-wrench fa-sm "></i> Edit Member(s) Records</a>
       <h6 class="collapse-header ">Feature Update</h6>
       <a class="collapse-item" href="haddassah"><i class="fas fa-home fa-sm "></i> Haddassah</a>
     </div>

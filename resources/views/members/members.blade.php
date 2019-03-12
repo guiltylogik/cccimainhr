@@ -12,7 +12,7 @@ Members
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <a href="addmember" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Add Member</a>
+              <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Add Member</a>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
@@ -20,43 +20,50 @@ Members
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>Picture</th>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
+                      <th>Date Of Birth</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Register date</th>
+                      <th>Tools</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>Picture</th>
                       <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
-                      <th>Salary</th>
+                      <th>Date Of Birth</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Register date</th>
+                      <th>Tools</th>
                     </tr>
                   </tfoot>
+
+                  @foreach ($members as $member)
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                    </tr>
-                  </tbody>
+                      <tr>
+                        <td>Tiger Nixon</td>
+                        <td>{{ $member->first_name}}</td>
+                        <td>{{ $member->first_name}}</td>
+                        <td>{{ $member->first_name}}</td>
+                        <td>{{ $member->first_name}}</td>
+                        <td>{{ $member->first_name}}</td>
+                        <td>
+                          <a href="/members/{{$member->id}}" class="d-none align-content-center btn-circle d-sm-inline-block btn btn-sm btn-user btn-info shadow-sm"><i class="fas fa-eye fa-lg"></i> </a> |
+                          <a href="/members/{{$member->id}}/edit" class="d-none btn-circle d-sm-inline-block btn btn-sm btn-warning shadow-sm align-content-center"><i class="fas fa-edit fa-lg"></i> </a> |
+
+                          <form class="btn-circle btn-sm" action="/members/{{$member->id}}" method="post">
+                          @method('DELETE')
+                          @csrf
+                          <button class="d-none btn-circle d-sm-inline-block btn btn-sm btn-danger shadow-sm align-content-center" ><i class="fas fa-trash-alt fa-lg"></i> </button>
+                        </form>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  @endforeach
                 </table>
               </div>
             </div>

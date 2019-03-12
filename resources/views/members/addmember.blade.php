@@ -16,7 +16,10 @@ Add Member
             <div class="text-center">
                 <h1 class="h4 text-primary mb-4">Personal Information</h1>
               </div>
-            <form class="user ">
+            <form class="user" method="POST" action="\members">
+
+              @csrf
+
                 <div class="form-group row">
                   <div class="col-sm-4 mb-2 mb-sm-0">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName" placeholder="First Name">
@@ -198,7 +201,9 @@ Add Member
 
                 <hr>
 
-                <button type="submit" class="btn btn-primary btn-user align-content-center"><i class="fas fa-user-plus fa-sm"></i> Add Member</button>
+                <button type="submit" value="add" class="btn btn-primary btn-user align-content-center"><i class="fas fa-user-plus fa-sm"></i> Add Member</button>
+                <button type="submit" value="save" class="btn btn-primary btn-user align-content-center"><i class="fas fa-save fa-sm"></i> Save &amp; Continue</button>
+                <button type="reset" class="btn btn-primary btn-user align-content-center"><i class="fas fa-redo-alt fa-sm"></i> Reset</button>
 
                 <hr>
 
