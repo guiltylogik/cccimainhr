@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('title')
 Members
@@ -13,6 +13,7 @@ Members
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Add Member</a>
+              <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Print</a>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">
@@ -24,8 +25,8 @@ Members
                       <th>Name</th>
                       <th>Date Of Birth</th>
                       <th>Phone</th>
-                      <th>Address</th>
-                      <th>Register date</th>
+                      <th>Residential Address</th>
+                      <th>Emergency Contact</th>
                       <th>Tools</th>
                     </tr>
                   </thead>
@@ -35,8 +36,8 @@ Members
                       <th>Name</th>
                       <th>Date Of Birth</th>
                       <th>Phone</th>
-                      <th>Address</th>
-                      <th>Register date</th>
+                      <th>Residential Address</th>
+                      <th>Emergency Contact</th>
                       <th>Tools</th>
                     </tr>
                   </tfoot>
@@ -49,7 +50,7 @@ Members
                         <td>{{ $member->first_name}}</td>
                         <td>{{ $member->first_name}}</td>
                         <td>{{ $member->first_name}}</td>
-                        <td>{{ $member->first_name}}</td>
+                        <td>Name &amp; Number</td>
                         <td>
                           <a href="/members/{{$member->id}}" class="d-none align-content-center btn-circle d-sm-inline-block btn btn-sm btn-user btn-info shadow-sm"><i class="fas fa-eye fa-lg"></i> </a> |
                           <a href="/members/{{$member->id}}/edit" class="d-none btn-circle d-sm-inline-block btn btn-sm btn-warning shadow-sm align-content-center"><i class="fas fa-edit fa-lg"></i> </a> |
@@ -69,7 +70,6 @@ Members
             </div>
           </div>
 
-        </div>
         <!-- /.container-fluid -->
 
 @endsection

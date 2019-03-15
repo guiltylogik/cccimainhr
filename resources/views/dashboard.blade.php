@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 
 @section('title')
@@ -285,6 +285,5 @@ Dashboard
             </div>
           </div>
 
-        </div>
 
 @endsection
