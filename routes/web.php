@@ -20,7 +20,10 @@
 //     return view('layout');
 // });
 
-Route::get('/', 'DashboardController@home');
+Route::get('/',function(){
+    return view('welcome');
+} );
+Route::get('/dashboard', 'DashboardController@home')->name('dashboard');
 
 /**
  *
@@ -47,8 +50,6 @@ Route::get('/', 'DashboardController@home');
 
 
 Route::resource('/members', 'MembersController'); //Same as above.
-Route::post('/members/del/{{member}}', 'MembersController@del'); //to navigate the achor tag delete option shortcomings.
-
 
 // Route::get('/', function () {
 //     return view('dashboard');
@@ -60,11 +61,26 @@ Route::post('/members/del/{{member}}', 'MembersController@del'); //to navigate t
 // Route::get('/addmember', function () {
 //     return view('members.addmember');
 // });
-// Route::get('/haddassah', function () {
-//     return view('haddassah');
-// });
-// Route::get('/settings', function () {
-//     return view('settings');
-// });
+Route::get('/haddassah', function () {
+    return view('haddassah');
+});
+Route::get('/settings', function () {
+    return view('admin.settings');
+});
 
 // Route::resource();
+
+
+
+
+/**
+ * Todo
+ *
+ * children's form
+ * sms
+ * online form access
+ *
+ */
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

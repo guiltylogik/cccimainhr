@@ -231,7 +231,8 @@ Add Member
                 <hr>
                 <div class="form-group row text-gray-100">
                 <div class="col-sm-4 mb-2 mb-sm-0">
-                  <input type="file" class="form-control form-control-user text-center" name="image" id="firstname" placeholder="Upload Picture">
+                  <label for="image">Upload Picture</label>
+                  <input type="file" class=" text-center" name="image">
                 </div>
                 <div class="col-sm-4 mb-2 mb-sm-0">
                   <button type="submit" value="add" name="submit" class="btn btn-primary btn-user align-content-center"><i class="fas fa-user-plus fa-sm"></i> Add Member</button>

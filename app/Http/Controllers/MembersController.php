@@ -12,6 +12,12 @@ class MembersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -45,6 +51,17 @@ class MembersController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->hasFile('image')) {
+            // your code here
+            // $request->image->store('members');
+            // $request->image->storeAs('members', $request->image->getClientOriginal());
+
+           $image = $request->image->storeAs('members', $request->firstname.'.'.
+            $request->image->getClientOriginalExtension());
+        }
+        dd($image);
+
+        return $request;
     }
 
     /**
@@ -92,7 +109,7 @@ class MembersController extends Controller
     public function destroy($member)
     {
         //
-        dd('Deleted -> '.$member); 
+        dd('Deleted -> '.$member);
     }
 
     // public function destroy(Member $member)
