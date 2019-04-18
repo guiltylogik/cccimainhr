@@ -27,6 +27,8 @@ class MembersController extends Controller
 
         // return $members;
 
+        // dd($members);
+
         return view('members.members', ['members' => $members]);
     }
 

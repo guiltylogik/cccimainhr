@@ -53,11 +53,11 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; cccihr 2019.</span>
+            <span>Copyright &copy; cccihr 2019.</span><span class="float-right">Another GuiltyLogik Softwork 2019.1</span></strong>
           </div>
-          <div class="copyright text-right my-auto">
-            <strong><span>Another GuiltyLogik Softwork</span></strong> 2019.1
-          </div>
+          {{-- <div class="copyright text-right my-auto">
+            <strong><span class="float-right">Another GuiltyLogik Softwork</span></strong> 2019.1
+          </div> --}}
         </div>
       </footer>
       <!-- End of Footer -->
@@ -74,7 +74,7 @@
   </a>
 
    <!-- Logout Modal-->
-   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -89,7 +89,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -107,7 +107,7 @@
 
 
   <!-- Page level custom scripts -->
-  <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+  {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
 
 </body>
 

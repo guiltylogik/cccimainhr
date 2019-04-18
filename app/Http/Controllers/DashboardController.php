@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Member;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,8 @@ class DashboardController extends Controller
 
     public function home(){
 
-        return view('dashboard');
+        $total_members = count(Member::All());
+
+        return view('dashboard', ['members'=> $total_members]);
     }
 }

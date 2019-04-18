@@ -18,7 +18,7 @@ Members
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Picture</th>
@@ -45,12 +45,18 @@ Members
                   @foreach ($members as $member)
                   <tbody>
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>{{ $member->first_name}}</td>
-                        <td>{{ $member->first_name}}</td>
-                        <td>{{ $member->first_name}}</td>
-                        <td>{{ $member->first_name}}</td>
-                        <td>Name &amp; Number</td>
+                        <td>
+                          @if ($member->image)
+                              Image
+                          @else
+                              No Image
+                          @endif
+                        </td>
+                        <td>{{ $member->first_name}} {{ $member->surname}}</</td>
+                        <td>{{ $member->dob}}</td>
+                        <td>0{{ $member->phone}}</td>
+                        <td>{{ $member->res_address}}</td>
+                        <td>{{ $member->emergency_contact_person}} 0{{ $member->emergency_contact_number}}</</td>
                         <td>
                           <a href="/members/{{$member->id}}" class="d-none align-content-center btn-circle d-sm-inline-block btn btn-sm btn-user btn-info shadow-sm"><i class="fas fa-eye fa-lg"></i> </a> |
                           <a href="/members/{{$member->id}}/edit" class="d-none btn-circle d-sm-inline-block btn btn-sm btn-warning shadow-sm align-content-center"><i class="fas fa-edit fa-lg"></i> </a> |
