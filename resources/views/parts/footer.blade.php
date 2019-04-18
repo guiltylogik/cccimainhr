@@ -5,7 +5,7 @@
             <span>Copyright &copy; cccihr 2019. </span>
           </div>
           <div class="copyright text-right my-auto">
-            <span>Another GuiltyLogik Code</span>
+            <span>Another GuiltyLogik </span>Softwork 2019.1
           </div>
         </div>
       </footer>

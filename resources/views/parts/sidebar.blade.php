@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href=" {{url('/dashboard')}} ">
   <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-laugh-wink"></i>
   </div>
@@ -14,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-  <a class="nav-link" href="dashboard">
+  <a class="nav-link" href="{{url('/dashboard')}}">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
@@ -38,9 +38,9 @@
       <h6 class="collapse-header ">Members</h6>
       <a class="collapse-item" href="/members"><i class="fas fa-users fa-sm"></i> Members</a>
       <a class="collapse-item" href="/members/create"><i class="fas fa-user-plus fa-sm "></i> Add Member(s)</a>
-      <a class="collapse-item" href="/members/edit"><i class="fas fa-wrench fa-sm "></i> Edit Member(s) Records</a>
+      {{-- <a class="collapse-item" href="/members/edit"><i class="fas fa-wrench fa-sm "></i> Edit Member(s) Records</a> --}}
       <h6 class="collapse-header ">Feature Update</h6>
-      <a class="collapse-item" href="/haddassah"><i class="fas fa-home fa-sm "></i> Haddassah</a>
+      <a class="collapse-item" href="/haddassah"><i class="fas fa-hand-holding-heart fa-sm "></i> Haddassah</a>
     </div>
   </div>
 </li>
