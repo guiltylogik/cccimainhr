@@ -7,7 +7,7 @@ Add Member
 
 @section('content')
 
-
+          @include('parts.alert')
           <div class="card shadow mb-4">
             <div class="card-header border-left-primary bg-gray-100 py-3">
             <h1 class="h3 mb-2 text-primary"><i class="fas fa-user-plus fa-sm"></i> Add Member</h1>

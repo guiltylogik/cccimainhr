@@ -20,4 +20,7 @@
   <!-- Custom styles for table-->
   <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+  {{-- toastr css lib. --}}
+  <link href="toastr.css" rel="stylesheet"/>
+
 </head>

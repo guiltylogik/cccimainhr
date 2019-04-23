@@ -20,6 +20,8 @@
   <!-- Custom styles for table-->
   <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+  <link href="{{asset('toastr/toastr.min.css')}}" rel="stylesheet"/>
+
 </head>
 
 <body id="page-top">
@@ -108,6 +110,11 @@
 
   <!-- Page level custom scripts -->
   {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
+
+
+  {{-- toastr js lib. --}}
+    <script src="{{asset('toastr/toastr.min.js')}}"></script>
+    @toastr_render
 
 </body>
 
