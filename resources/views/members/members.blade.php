@@ -13,7 +13,7 @@ Members
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Add Member</a>
-              <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Print</a>
+              <a href="/members/create" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-right"><i class="fas fa-user-plus fa-sm"></i> Print</a>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
             <div class="card-body">

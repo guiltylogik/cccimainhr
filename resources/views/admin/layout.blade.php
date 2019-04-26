@@ -55,7 +55,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; cccihr 2019.</span><span class="float-right">Another GuiltyLogik Softwork 2019.1</span></strong>
+            <span>Copyright &copy; &#x26EA; CCCihr 2019.</span><span class="float-right">Another GuiltyLogik Softwork 2019.1</span></strong>
           </div>
           {{-- <div class="copyright text-right my-auto">
             <strong><span class="float-right">Another GuiltyLogik Softwork</span></strong> 2019.1
