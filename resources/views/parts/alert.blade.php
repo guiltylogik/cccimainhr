@@ -1,5 +1,9 @@
-{{-- @if ($errors->any())
+<script>
+
+@if ($errors->any())
     @foreach ($errors->all() as $error)
-    toastr({{$error}})
+        toastr.error("{{$error}}")
     @endforeach
-@endif --}}
+@endif
+
+</script>

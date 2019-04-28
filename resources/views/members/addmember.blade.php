@@ -7,7 +7,6 @@ Add Member
 
 @section('content')
 
-          @include('parts.alert')
           <div class="card shadow mb-4">
             <div class="card-header border-left-primary bg-gray-100 py-3">
             <h1 class="h3 mb-2 text-primary"><i class="fas fa-user-plus fa-sm"></i> Add Member</h1>
@@ -25,7 +24,7 @@ Add Member
                     <input type="text" class="form-control form-control-user text-center" name="firstname" id="firstname" placeholder="First Name" required>
                   </div>
                   <div class="col-sm-4 mb-2 mb-sm-0">
-                    <input type="text" class="form-control form-control-user text-center" name="other_names" id="other_names" placeholder="Middle Name">
+                    <input type="text" class="form-control form-control-user text-center" name="other_name" id="other_name" placeholder="Middle Name">
                   </div>
                   <div class="col-sm-4">
                     <input type="text" class="form-control form-control-user text-center" name="surname" id="surname" placeholder="Surname Name" required>
@@ -67,7 +66,7 @@ Add Member
                     <input type="tel" class="form-control form-control-user" name="mobile_number" id="mobile_number" placeholder="Mobile Number">
                   </div>
                   <div class="col-sm-4 mb-2 mb-sm-0">
-                    <input type="tel" class="form-control form-control-user" name="other_phone" id="other_phone" placeholder="Others">
+                    <input type="tel" class="form-control form-control-user" name="other_number" id="other_number" placeholder="Others">
                   </div>
                   <div class="col-sm-4">
                     <input type="tel" class="form-control form-control-user" name="office_number" id="office_number" placeholder="Residence/Office Number">
@@ -169,7 +168,7 @@ Add Member
                           <input type="checkbox" class=" form-control-user" id="evangelism_ministry" name="ministries[]" value="Evangelism Ministry"> Evangelism Ministry <br>
                         </div>
                 <div class="col-sm-6 ">
-                  <label for="marital_status" class=" form-control-user"><b>Groups &amp; Departments:</b></label><br>
+                  <label for="group_n_departments" class=" form-control-user"><b>Groups &amp; Departments:</b></label><br>
                   <input type="checkbox" class=" form-control-user" id="single" name="group_n_departments[]" value="1"> Music <br>
                     <input type="checkbox" class=" form-control-user" id="married" name="group_n_departments[]" value="2"> Instrumentalist (Music) <br> 
                     <input type="checkbox" class=" form-control-user" id="divorced" name="group_n_departments[]" value="3"> Ushering <br> 
@@ -205,14 +204,14 @@ Add Member
                     <input type="text" class="form-control form-control-user text-center" name="covenant_fam_name" id="covenant_fam_name" placeholder="Covenant Family Name">
                   </div>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control form-control-user text-center" name="covenat_leader" id="covenat_leader" placeholder="Covenant Leader">
+                    <input type="text" class="form-control form-control-user text-center" name="covenant_leader" id="covenant_leader" placeholder="Covenant Leader">
                   </div>
                 </div>
 
                 <div class="form-group row text-gray-100">
                   <div class="col-sm-3 mb-2 mb-sm-0">
                   <label for=""> </label>
-                    <input type="tel" class="form-control form-control-user text-center" name="covenat_leader_phone" id="covenat_leader_phone" placeholder="Phone Number">
+                    <input type="tel" class="form-control form-control-user text-center" name="covenant_leader_phone" id="covenant_leader_phone" placeholder="Phone Number">
                   </div>
                   <div class="col-sm-3 mb-2 mb-sm-0">
                   <label for=""> Date received:</label>
@@ -248,4 +247,8 @@ Add Member
 
             </div>
           </div>
+@endsection
+
+@section('alert')
+  @include('parts.alert') 
 @endsection

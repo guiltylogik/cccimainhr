@@ -27,16 +27,17 @@ class StoreMemberDetails extends FormRequest
             //
             'image'      => 'nullable|image|mimies:jpeg, png, bmp, gif, svg',
             'firstname' => 'required|max:255',
-            'other_name' => 'nullable|max:255',
+            'other_name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'email' => 'nullable|unique',
-            'dob' => 'nullable|datetime',
-            'marital_status' => 'required',
+            'email' => 'required|nullable|unique',
+            'dob' => 'required|nullable|datetime',
+            'gender' => 'nullable',
+            'marital_status' => 'nullable',
             'res_address' => 'nullable',
             'postal_address' => 'nullable',
-            'phone' => 'nullable',
-            'office_number' => 'nullable',
-            'other_number' => 'nullable',
+            'phone' => 'required|nullable',
+            'office_number' => 'required|nullable',
+            'other_number' => 'required|nullable',
             'profession' => 'nullable',
             'position' => 'nullable',
             'office_address' => 'nullable',
@@ -53,9 +54,9 @@ class StoreMemberDetails extends FormRequest
             'cov_fam_name' => 'nullable',
             'covenant_leader' => 'nullable',
             'covenant_leader_num' => 'nullable',
-            'date_received' => 'required',
-            'reviced_rec_date' => 'required',
-            'reviced_rec_time' => 'required'
+            'date_received' => 'nullable',
+            'reviced_rec_date' => 'nullable',
+            'reviced_rec_time' => 'nullable'
         ];
     }
 }
