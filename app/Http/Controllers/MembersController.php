@@ -80,7 +80,7 @@ class MembersController extends Controller
         if($request->validated()){
 
 
-            if($request->image){
+            if($request->hasfile('image')){
                 $img = $request->image->storeAs('members', $request->firstname.'.'.
                     $request->image->getClientOriginalExtension());
             }else{
@@ -173,56 +173,58 @@ class MembersController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Member $member, Request  $request)
+    public function update(Member $member, StoreMemberDetails  $request)
     {
         //
 
         // return $request;
 
 
-        if($request->image){
-            $img = $request->image->storeAs('members', $request->firstname.'.'.
-                $request->image->getClientOriginalExtension());
-        }else{
-            $img = $member->image;
+        if($request->validated()){
+            if($request->image){
+                $img = $request->image->storeAs('members', $request->firstname.'.'.
+                    $request->image->getClientOriginalExtension());
+            }else{
+                $img = $member->image;
+            }
+
+            $n = $member->update([
+
+                'image' => $img,
+                'firstname' => request('firstname'),
+                'other_name' => request('other_name'),
+                'surname' => request('surname'),
+                'email' => request('email'),
+                'dob' => request('dob'),
+                'gender' => request('gender'),
+                'marital_status' => request('marital_status'),
+                'res_address' => request('residential_address'),
+                'postal_address' => request('postal_address'),
+                'phone' => request('mobile_number'),
+                'office_number' => request('office_number'),
+                'other_number' => request('other_number'),
+                'profession' => request('profession'),
+                'position' => request('position'),
+                'office_address' => request('office_address'),
+                'emergency_contact_person' => request('emergency_con_person'),
+                'emergency_contact_number' => request('emergency_con_phone'),
+                'emergency_contact_address' => request('emergency_con_address'),
+                'name_of_spouse'  => request('name_of_spouse'),
+                'number_of_children'  => request('number_of_children'),
+                'children_names'  => request('childrens_name'),
+                'hear_about_us'  => request('about_us'),
+                'ministries'  => json_encode(request('ministries')),
+                'group_n_dept'  => json_encode(request('group_n_departments')),
+                'branch' => request('branch'),
+                'cov_fam_name' => request('covenant_fam_name'),
+                'covenant_leader' => request('covenant_leader'),
+                'covenant_leader_num' => request('covenat_leader_phone'),
+                'date_received' => request('date_received'),
+                'revised_rec_date' => request('revised_record_date'),
+                'revised_rec_time' => request('revised_record_time')
+             ]);
+            if($n){toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.");}
         }
-
-        $n = $member->update([
-
-            'image' => $img,
-            'firstname' => request('firstname'),
-            'other_name' => request('other_name'),
-            'surname' => request('surname'),
-            'email' => request('email'),
-            'dob' => request('dob'),
-            'gender' => request('gender'),
-            'marital_status' => request('marital_status'),
-            'res_address' => request('residential_address'),
-            'postal_address' => request('postal_address'),
-            'phone' => request('mobile_number'),
-            'office_number' => request('office_number'),
-            'other_number' => request('other_number'),
-            'profession' => request('profession'),
-            'position' => request('position'),
-            'office_address' => request('office_address'),
-            'emergency_contact_person' => request('emergency_con_person'),
-            'emergency_contact_number' => request('emergency_con_phone'),
-            'emergency_contact_address' => request('emergency_con_address'),
-            'name_of_spouse'  => request('name_of_spouse'),
-            'number_of_children'  => request('number_of_children'),
-            'children_names'  => request('childrens_name'),
-            'hear_about_us'  => request('about_us'),
-            'ministries'  => json_encode(request('ministries')),
-            'group_n_dept'  => json_encode(request('group_n_departments')),
-            'branch' => request('branch'),
-            'cov_fam_name' => request('covenant_fam_name'),
-            'covenant_leader' => request('covenant_leader'),
-            'covenant_leader_num' => request('covenat_leader_phone'),
-            'date_received' => request('date_received'),
-            'revised_rec_date' => request('revised_record_date'),
-            'revised_rec_time' => request('revised_record_time')
-         ]);
-        if($n){toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.");}
         return redirect('/members');
     }
 
@@ -241,13 +243,14 @@ class MembersController extends Controller
 
         // dd("Deleted ".$member->first_name."'s Record");
 
-        if($member->delete()){
+        // if($member->delete()){
 
-            toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
+        //     toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
 
-        }
+        // }
 
 
+        toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
         return redirect('/members');
 
     }

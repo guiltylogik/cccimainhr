@@ -6,6 +6,13 @@ Members
 
 @section('content')
 
+<style>
+
+
+
+
+</style>
+
  <!-- Page Heading -->
  <h1 class="h3 mb-2 text-gray-800"><i class="fas fa-users fa-sm"></i> Members</h1>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
@@ -24,7 +31,7 @@ Members
                       <th>Picture</th>
                       <th>Name</th>
                       <th>Date Of Birth</th>
-                      <th>Phone</th>
+                      <th>Phone &amp; Email</th>
                       <th>Residential Address</th>
                       <th>Emergency Contact</th>
                       <th>Tools</th>
@@ -35,7 +42,7 @@ Members
                       <th>Picture</th>
                       <th>Name</th>
                       <th>Date Of Birth</th>
-                      <th>Phone</th>
+                      <th>Phone &amp; Email</th>
                       <th>Residential Address</th>
                       <th>Emergency Contact</th>
                       <th>Tools</th>
@@ -45,29 +52,31 @@ Members
                   @foreach ($members as $member)
                   <tbody>
                       <tr>
-                        <td>
-                          <div class="mr-2">
-                            <img class="img-fluid img-thumbnail rounded-circle" width="50px" height="50px" src="{{asset('img/'.$member->image)}}" alt="Member Image">
-                          </div>
-                        </td>
-                        <td>{{ $member->firstname}}
-                            {{($member->other_name)?$member->other_name[0].".":" "}}
-                          {{ $member->surname}}</</td>
-                        <td>{{ ($member->dob)?$member->dob:"N/A"}}</td>
-                        <td>{{ ($member->phone)?$member->phone:"N/A"}}</td>
-                        <td>{{ ($member->res_address?$member->res_address:"N/A")}}</td>
-                        <td>{{ ($member->emergency_contact_person)?$member->emergency_contact_person." ".$member->emergency_contact_number:"N/A"}}</</td>
-                        <td>
-                          <a href="/members/{{$member->id}}" class="align-content-center btn-circle  btn btn-sm btn-user btn-info shadow-sm"><i class="fas fa-eye fa-sm"></i> </a>
-                          <a href="/members/{{$member->id}}/edit" class="btn-circle  btn btn-sm btn-warning shadow-sm align-content-center"><i class="fas fa-edit fa-sm"></i> </a>
-
-                          <form class="btn-circle btn-sm" action="/members/{{$member->id}}" method="post">
-                          @method('DELETE')
-                          @csrf
-                          <button class="btn-circle  btn btn-sm btn-danger shadow-sm align-content-center" ><i class="fas fa-trash-alt fa-sm"></i> </button>
-                        </form>
-
-                        </td>
+                        <div class="outerdiv">
+                            <td>
+                                <div class="mr-2">
+                                  <img class="img-fluid img-thumbnail rounded-circle" width="50px" height="50px" src="{{asset('img/'.$member->image)}}" alt="Member Image">
+                                </div>
+                              </td>
+                              <td>{{ $member->firstname}}
+                                  {{($member->other_name)?$member->other_name[0].".":" "}}
+                                {{ $member->surname}}</</td>
+                              <td>{{ ($member->dob)?$member->dob:"N/A"}}</td>
+                              <td>{{ ($member->phone)?$member->phone:"N/A"}} {{$member->email}}</td>
+                              <td>{{ ($member->res_address?$member->res_address:"N/A")}}</td>
+                              <td>{{ ($member->emergency_contact_person)?$member->emergency_contact_person." ".$member->emergency_contact_number:"N/A"}}</</td>
+                              <td>
+                                <div class="innerdiv">
+                                    <a href="/members/{{$member->id}}" class="align-content-center btn-circle  btn btn-sm btn-user btn-info shadow-sm"><i class="fas fa-eye fa-sm"></i> </a>
+                                    <a href="/members/{{$member->id}}/edit" class="btn-circle  btn btn-sm btn-warning shadow-sm align-content-center"><i class="fas fa-edit fa-sm"></i> </a>
+                                    <a class="btn-circle  btn btn-sm btn-danger shadow-sm align-content-center  delete-member" href="#" data-toggle="modal" data-id=" {{$member->id}} " 
+                                      data-details="{{ $member->firstname}}
+                                        {{($member->other_name)?$member->other_name[0].".":" "}}
+                                      {{ $member->surname}}'s" data-target="#deleteModal" data-url="{{ url('members', $member->id) }}"><i class="fas fa-trash-alt fa-sm"></i>
+                                    </a>
+                                </div>
+                              </td>
+                        </div>
                       </tr>
                     </tbody>
                   @endforeach
@@ -78,4 +87,8 @@ Members
 
         <!-- /.container-fluid -->
 
+@endsection
+
+@section('modal')
+    @include('parts.modals')
 @endsection

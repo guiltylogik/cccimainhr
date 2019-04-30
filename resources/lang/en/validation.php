@@ -131,6 +131,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        // 'other_name' => [
+        //     'required' => 'Please! you are required to enter First Name.',
+        // ]
     ],
 
     /*
@@ -144,6 +148,39 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'image'      => 'Picture',
+        'firstname' => 'First name',
+        'other_name' => 'Middle name',
+        'surname' => 'surname',
+        'email' => 'Email address',
+        'dob' => ' Date of birth',
+        'gender' => 'Gender',
+        'marital_status' => 'Marital status',
+        'residential_address' => 'Residential address',
+        'postal_address' => 'postal address',
+        'mobile_number' => 'mobile number',
+        'office_number' => 'office number',
+        'other_number' => 'other number',
+        'profession' => 'profession',
+        'position' => 'member\'s postion',
+        'office_address' => 'office address',
+        'emergency_con_person' => 'emergency contact person',
+        'emergency_con_phone' => 'emergency contact\'s phone',
+        'emergency_con_address' => 'emergency contact\'s address',
+        'name_of_spouse' =>' name of spouse',
+        'number_of_children' => 'number of children',
+        'children_names' => 'children\'s name',
+        'hear_about_us' => 'hear about us',
+        'ministries' => 'ministries',
+        'group_n_dept' => 'groups and departments',
+        'branch' => 'branch',
+        'covenant_fam_name' => 'convenant family name',
+        'covenant_leader' => 'convenant leader',
+        'covenant_leader_num' => 'convenant leader number',
+        'date_received' => 'date received',
+        'reviced_rec_date' => 'revised record date',
+        'reviced_rec_time' => 'revised record time'
+    ],
 
 ];

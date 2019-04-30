@@ -8,7 +8,8 @@
 
 <div class="card shadow mb-4">
     <div class="card-header border-left-primary bg-gray-100 py-3">
-    <h1 class="h3 mb-2 text-primary"><i class="fas fa-user-edit fa-sm"></i> Edit Member Record</h1>
+    <h1 class="h3 mb-2 text-primary"><i class="fas fa-user-edit fa-sm"></i> Edit Member Record -
+      ({{$member->firstname." ".(($member->other_name)? $member->other_name[0].".":"")." ".$member->surname}})</h1>
     </div>
     <div class="card-body border-left-primary bg-gradient-primary">
     <div class="text-center">
@@ -37,12 +38,12 @@
           </div>
         <div class="col-sm-3 text-gray-100">
             <label for="gender" class=" form-control-user">Sex: </label>
-            <input type="radio" class=" form-control-user" id="male" name="gender" value="male" {{($member->gender=='male')? 'checked':""}}> Male
-            <input type="radio" class=" form-control-user" id="female" name="gender" value="female" {{($member->gender=='female')? 'checked':""}}> Female
+            <input type="radio" class=" form-control-user" id="male" name="gender" value="male" {{($member->gender=='male')? 'checked':""}} required> Male
+            <input type="radio" class=" form-control-user" id="female" name="gender" value="female" {{($member->gender=='female')? 'checked':""}} required> Female
           </div>
           <div class="col-sm-6 text-gray-100">
           <label for="marital_status" class=" form-control-user">Marital Status:</label>
-          <input type="radio" class=" form-control-user" id="single" name="marital_status" value="single" {{($member->marital_status=='single')? 'checked':""}}> Single
+          <input type="radio" class=" form-control-user" id="single" name="marital_status" value="single" {{($member->marital_status=='single')? 'checked':""}} required> Single
             <input type="radio" class=" form-control-user" id="married" name="marital_status" value="married" {{($member->marital_status=='married')? 'checked':""}}> Married 
             <input type="radio" class=" form-control-user" id="divorced" name="marital_status" value="divorced" {{($member->marital_status=='divorced')? 'checked':""}}> Divorced 
             <input type="radio" class=" form-control-user" id="widowed" name="marital_status" value="widowed" {{($member->marital_status=='Widowed')? 'checked':""}}> Widowed 
@@ -69,7 +70,7 @@
             <input type="tel" class="form-control form-control-user text-center" name="other_number" id="other_number" placeholder="Other Number" value="{{$member->other_number}}">
           </div>
           <div class="col-sm-4">
-            <input type="tel" class="form-control form-control-user text-center" name="office_number" id="office_number" placeholder="Residence/Office Number" value="0{{$member->office_number}}">
+            <input type="tel" class="form-control form-control-user text-center" name="office_number" id="office_number" placeholder="Residence/Office Number" value="{{$member->office_number}}">
           </div>
         </div>
 
@@ -204,7 +205,7 @@
             <input type="text" class="form-control form-control-user text-center" name="covenant_fam_name" id="covenant_fam_name" placeholder="Covenant Family Name" value="{{$member->cov_fam_name}}">
           </div>
           <div class="col-sm-4">
-            <input type="text" class="form-control form-control-user text-center" name="covenat_leader" id="covenat_leader" placeholder="Covenant Leader" value="{{$member->covenant_leader}}">
+            <input type="text" class="form-control form-control-user text-center" name="covenant_leader" id="covenant_leader" placeholder="Covenant Leader" value="{{$member->covenant_leader}}">
           </div>
         </div>
 
@@ -235,12 +236,10 @@
         </div>
         <div class="col-sm-6 mb-2 mb-sm-0">
         <button type="submit" value="add" name="submit" class="btn btn-info btn-user align-content-center"><i class="fas fa-user-plus fa-sm"></i> Update</button>
-        <button type="submit" value="save" name="submit" class="btn btn-primary btn-user align-content-center"><i class="fas fa-address-card fa-sm"></i> Update &amp; View</button>
-        {{-- <form class="btn-circle btn-sm" action="/members/{{$member->id}}" method="post">
-            @method('DELETE')
-            @csrf
-            <button type="" class="btn btn-danger btn-user align-content-center"><i class="fas fa-user-times fa-sm"></i> Delete Record</button>
-          </form> --}}
+        <button type="submit" value="save" name="submit" class="btn btn-success btn-user align-content-center"><i class="fas fa-address-card fa-sm"></i> Update &amp; View</button>
+        <a class="btn btn-danger btn-user align-content-center delete-member" href="#" data-toggle="modal" data-target="#deleteModal" data-url="{{url('members',$member->id)}}">
+          <i class="fas fa-user-times fa-sm"></i> Delete Record
+        </a>
         </div>
 
       </div>
@@ -251,4 +250,12 @@
     </div>
   </div>
 
+@endsection
+
+@section('alert')
+  @include('parts.alert') 
+@endsection
+
+@section('modal')
+    @include('parts.modals')
 @endsection

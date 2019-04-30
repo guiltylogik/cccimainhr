@@ -40,13 +40,16 @@ Dashboard
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Members</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Member(s)</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$members}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
                 </div>
+            </div>
+            <div class="col-auto">
+                <a href="{{url('/members')}}" class="btn btn-sm btn-success shadow-sm text-md font-weight-bold align-content-center"><i class="fas fa-eye fa-sm"></i> View</a>
             </div>
         </div>
     </div>

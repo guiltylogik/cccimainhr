@@ -25,10 +25,10 @@ class CreateMembersTable extends Migration
             $table->char('marital_status', 12)->nullable();
             $table->string('res_address')->nullable();
             $table->string('postal_address', 32)->nullable();
-            $table->char('phone', 16)->nullbale()->default('N/A');
+            $table->char('phone', 16)->nullbale();
             $table->char('office_number', 16)->nullable();
             $table->char('other_number', 16)->nullable();
-            $table->string('profession', 100)->nullable()->default('N/A');
+            $table->string('profession', 100)->nullable();
             $table->char('position', 32)->nullable();
             $table->string('office_address')->nullable();
             $table->string('emergency_contact_person')->nullable();
@@ -38,9 +38,9 @@ class CreateMembersTable extends Migration
             $table->tinyInteger('number_of_children')->nullable();
             $table->string('children_names')->nullable();
             $table->string('hear_about_us')->nullable();
-            $table->string('ministries')->nullable()->default('N/A');
-            $table->string('group_n_dept')->nullable()->default('N/A');
-            $table->string('branch')->nullable()->default('N/A');
+            $table->string('ministries')->nullable();
+            $table->string('group_n_dept')->nullable();
+            $table->string('branch')->nullable();
             $table->string('cov_fam_name')->nullable();
             $table->string('covenant_leader')->nullable();
             $table->char('covenant_leader_num', 16)->nullable();
