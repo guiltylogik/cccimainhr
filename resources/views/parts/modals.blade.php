@@ -14,7 +14,11 @@
         <div class="modal-body">Are you
           <span class="text-lg font-weight-bold text-uppercase text-warning">sure</span> you want to
           <span class=" text-lg font-weight-bold text-uppercase text-gray-900">delete</span> this
-          <span class=" text-lg font-weight-bold text-danger text-uppercase">record</span>? </div>
+          <span class=" text-lg font-weight-bold text-danger text-uppercase">record?</span>
+          <div class="">
+          <span class="text-uppercase text-lg font-weight-bold text-danger">This cannot be undone.</span>
+          </div>
+        </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <form id="deleteForm" action="" method="post">

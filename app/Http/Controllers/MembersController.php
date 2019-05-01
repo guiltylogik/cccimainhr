@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMemberDetails;
+use App\Http\Controllers\Auth;
+use Image;
+use File;
 
 class MembersController extends Controller
 {
@@ -81,17 +84,39 @@ class MembersController extends Controller
 
 
             if($request->hasfile('image')){
-                $img = $request->image->storeAs('members', $request->firstname.'.'.
-                    $request->image->getClientOriginalExtension());
+
+                // $img = $request->image->move(public_path().'/img/members',
+                // str_slug($request->firstname." ".$request->surname." ".time()).'.'.
+                //     $request->image->getClientOriginalExtension());
+                $path = public_path('img/members/');
+
+                if(!File::exists($path)){
+                    File::makeDirectory($path, 0777, true, true);
+                    File::makeDirectory($path.'thumbnail', 0777, true, true);
+                }
+
+                $original_img = $request->image;
+                $img = str_slug($request->firstname." ".$request->surname." ".time()).'.'.
+                $request->image->getClientOriginalExtension();
+
+                $thumb_img = Image::make($original_img);
+                $original_img_path =$path;
+                $thumb_img_path =$path.'thumbnail/';
+
+                $thumb_img->save($original_img_path.$img);
+                $thumb_img->resize(512, 512);
+                $thumb_img->save($thumb_img_path.$img);
+
+
             }else{
                 $img = 'generic.jpg';
             }
 
              Member::create([
                 'image' => $img,
-                'firstname' => request('firstname'),
-                'other_name' => request('other_name'),
-                'surname' => request('surname'),
+                'firstname' => ucfirst(request('firstname')),
+                'other_name' => ucfirst(request('other_name')),
+                'surname' => ucfirst(request('surname')),
                 'email' => request('email'),
                 'dob' => request('dob'),
                 'gender' => request('gender'),
@@ -119,7 +144,8 @@ class MembersController extends Controller
                 'covenant_leader_num' => request('covenat_leader_phone'),
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
-                'revised_rec_time' => request('revised_record_time')
+                'revised_rec_time' => request('revised_record_time'),
+                'added_by' => auth()->user()->name
              ]);
 
             toastr('New Member Record Added Successfully');
@@ -128,7 +154,7 @@ class MembersController extends Controller
             if($request->submit === "save"){
                 return redirect('/members');
             }
-            return redirect()->back();
+            return back();
         }
 
         // return redirect()->url('/members');
@@ -180,20 +206,49 @@ class MembersController extends Controller
         // return $request;
 
 
-        if($request->validated()){
-            if($request->image){
-                $img = $request->image->storeAs('members', $request->firstname.'.'.
-                    $request->image->getClientOriginalExtension());
-            }else{
-                $img = $member->image;
+        // dd($request->File('image'));
+        if($request->validated())
+        {
+
+            if($request->hasFile('image')){
+
+                // $path = public_path('img/member');
+
+                // if(!File::exists($path)){
+                //     File::makeDirectory($path, 0777, true, true);
+                // }
+
+                $old_img = $member->image;
+
+                $img_name = $img_name = str_slug($request->firstname." ".$request->surname." ".time()).'.'.
+                $request->image->getClientOriginalExtension();
+                $update_img = $request->image;
+                $thumb_img = Image::make($update_img);
+                $update_img_path = public_path('img/members/');
+
+                $thumb_img->save($update_img_path.$img_name);
+                $thumb_img->resize(512, 512);
+                $thumb_img->save($update_img_path.'thumbnail/'.$img_name);
+
+                //  check for an old image and delete it.
+                if($update_img_path.$old_img && !($old_img == 'generic.jpg'))
+                {
+                    $old_img = [$update_img_path.$old_img, $update_img_path.'thumbnail/'.$old_img];
+                    // dd($old_img);
+                    File::delete($old_img);
+                }
+
+            }else
+            {
+                $img_name = $member->image;
             }
 
             $n = $member->update([
 
-                'image' => $img,
-                'firstname' => request('firstname'),
-                'other_name' => request('other_name'),
-                'surname' => request('surname'),
+                'image' => $img_name,
+                'firstname' => ucfirst(request('firstname')),
+                'other_name' => ucfirst(request('other_name')),
+                'surname' => \ucfirst(request('surname')),
                 'email' => request('email'),
                 'dob' => request('dob'),
                 'gender' => request('gender'),
@@ -221,11 +276,16 @@ class MembersController extends Controller
                 'covenant_leader_num' => request('covenat_leader_phone'),
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
-                'revised_rec_time' => request('revised_record_time')
+                'revised_rec_time' => request('revised_record_time'),
+                'updated_by' => auth()->user()->name
              ]);
-            if($n){toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.");}
+
+            ($n)? toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.") : "";
+            return redirect('/members');
         }
-        return redirect('/members');
+
+        return back();
+
     }
 
     /**

@@ -1,7 +1,8 @@
 @extends('admin.layout')
 
 @section('title')
-    Edit Member
+Edit -
+{{$member->firstname." ".(($member->other_name)? $member->other_name[0].".":"")." ".$member->surname}}'s record
 @endsection
 
 @section('content')
@@ -253,7 +254,7 @@
 @endsection
 
 @section('alert')
-  @include('parts.alert') 
+  @include('parts.alert')
 @endsection
 
 @section('modal')

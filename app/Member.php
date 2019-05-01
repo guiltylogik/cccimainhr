@@ -15,7 +15,7 @@ class Member extends Model
         'profession', 'position', 'office_address', 'emergency_contact_person',
         'emergency_contact_number', 'emergency_contact_address', 'name_of_spouse',
         'number_of_children', 'name_of_children', 'children_names', 'hear_about_us',
-        'ministries', 'group_n_dept', 'branch', 'cov_fam_name', 'covenant_leader',
-        'covenant_leader_num', 'date_received', 'revised_rec_date', 'revised_rec_time'
+        'ministries', 'group_n_dept', 'branch', 'cov_fam_name', 'covenant_leader', 'covenant_leader_num',
+        'date_received', 'revised_rec_date', 'revised_rec_time', 'added_by', 'updated_by'
     ];
 }

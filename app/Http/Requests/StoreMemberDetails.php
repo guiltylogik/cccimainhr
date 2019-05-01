@@ -25,9 +25,9 @@ class StoreMemberDetails extends FormRequest
     {
         return [
             //
-            'image'      => 'nullable|image|mimies:jpeg, png, bmp, gif, svg',
+            'image'      => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'firstname' => 'required|min:3|max:255',
-            'other_name' => 'required|nullable|min:3|max:255',
+            'other_name' => 'nullable|min:3|max:255',
             'surname' => 'required|min:3|max:255',
             'email' => 'required|nullable|email',
             'dob' => 'required|nullable|date',
@@ -38,8 +38,8 @@ class StoreMemberDetails extends FormRequest
             'mobile_number' => 'required|nullable|min:10',
             'office_number' => 'nullable|min:10',
             'other_number' => 'nullable|min:10',
-            'profession' => 'nullable|min:5',
-            'position' => 'nullable|min:5',
+            'profession' => 'nullable|min:3',
+            'position' => 'nullable|min:3',
             'office_address' => 'nullable|min:5',
             'emergency_con_person' => 'required|min:3',
             'emergency_con_phone' => 'required|nullable|min:10',

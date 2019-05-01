@@ -47,6 +47,8 @@ class CreateMembersTable extends Migration
             $table->date('date_received')->nullable();
             $table->date('revised_rec_date')->nullable();
             $table->time('revised_rec_time')->nullable();
+            $table->char('added_by');
+            $table->char('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -55,7 +55,7 @@ Members
                         <div class="outerdiv">
                             <td>
                                 <div class="mr-2">
-                                  <img class="img-fluid img-thumbnail rounded-circle" width="50px" height="50px" src="{{asset('img/'.$member->image)}}" alt="Member Image">
+                                  <img class="img-fluid img-thumbnail" width="70px" height="70px" src="{{asset('img/members/thumbnail/'.$member->image)}}" alt="Member Image thumbnail">
                                 </div>
                               </td>
                               <td>{{ $member->firstname}}
