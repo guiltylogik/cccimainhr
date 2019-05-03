@@ -11,14 +11,17 @@ class CreateMinistriesTable extends Migration
      *
      * @return void
      */
-    // public function up()
-    // {
-    //     Schema::create('ministries', function (Blueprint $table) {
-    //         $table->increments('id');
-    //         $table->string('ministry');
-    //         $table->timestamps();
-    //     });
-    // }
+    public function up()
+    {
+        Schema::create('ministries', function (Blueprint $table) {
+            $table->increments('id');
+            // $table->unsignedInteger('member_id');
+            $table->boolean('type');
+            $table->string('ministry', 100);
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.

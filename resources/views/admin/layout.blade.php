@@ -3,104 +3,107 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>@yield('title')</title>
+    <title>@yield('title')</title>
 
-<link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
 
-  <!-- Custom fonts for this template-->
-  <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-  <!-- Custom styles for table-->
-  <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <!-- Custom styles for table-->
+    <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
-  <link href="{{asset('toastr/toastr.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('toastr/toastr.min.css')}}" rel="stylesheet" />
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    @include('parts.sidebar')
+        @include('parts.sidebar')
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-        @include('parts.nav')
+                @include('parts.nav')
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-          <!-- Page Heading -->
-          @yield('content')
+                    <!-- Page Heading -->
+                    @yield('content')
 
-        </div>
-        <!-- /.container-fluid -->
+                </div>
+                <!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
+            </div>
+            <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; &#x26EA; CCCihr 2019.</span><span class="float-right">Another GuiltyLogik Softwork 2019.1</span></strong>
-          </div>
-          {{-- <div class="copyright text-right my-auto">
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; &#x26EA; CCCihr 2019.</span><span class="float-right">Another GuiltyLogik
+                            Softwork 2019.1</span></strong>
+                    </div>
+                    {{-- <div class="copyright text-right my-auto">
             <strong><span class="float-right">Another GuiltyLogik Softwork</span></strong> 2019.1
           </div> --}}
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-      </footer>
-      <!-- End of Footer -->
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+    @yield('modal')
 
-  @yield('modal')
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    @yield('script')
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
-  @yield('script')
-  <!-- Custom scripts for all pages-->
-  <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
-  <!-- Page level plugins -->
-  <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-  {{-- <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script> --}}
+    <!-- Page level plugins -->
+    <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    {{-- <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script> --}}
 
 
-  <!-- Page level custom scripts -->
-  {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
+    <!-- Page level custom scripts -->
+    {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
 
 
 
-  {{-- toastr js lib. --}}
+    {{-- toastr js lib. --}}
     <script src="{{asset('toastr/toastr.min.js')}}"></script>
     @yield('alert')
     @toastr_render

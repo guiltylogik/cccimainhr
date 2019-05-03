@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\Ministry;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMemberDetails;
 use App\Http\Controllers\Auth;
@@ -44,9 +46,14 @@ class MembersController extends Controller
      */
     public function create()
     {
-        //
+        //(type = 1) = Ministry (type = 2) = Group
+        // $ministries = getMinistry(1);
+        // $groups = getMinistry(2);
+        $ministries = Ministry::get()->where('type', '=', 1);
+        $groups = Ministry::get()->where('type', '=', 2);
+        // return($groups);
 
-        return view('members.addmember');
+        return view('members.addmember', compact('ministries', 'groups'));
     }
 
     /**
@@ -136,8 +143,6 @@ class MembersController extends Controller
                 'number_of_children'  => request('number_of_children'),
                 'children_names'  => request('childrens_name'),
                 'hear_about_us'  => request('about_us'),
-                'ministries'  => json_encode(request('ministries')),
-                'group_n_dept'  => json_encode(request('group_n_departments')),
                 'branch' => request('branch'),
                 'cov_fam_name' => request('covenant_fam_name'),
                 'covenant_leader' => request('covenant_leader'),
@@ -145,6 +150,8 @@ class MembersController extends Controller
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
                 'revised_rec_time' => request('revised_record_time'),
+
+                'slug' => str_slug(request('firstname')." ".request('surname')." ".(request('branch'))),
                 'added_by' => auth()->user()->name
              ]);
 
@@ -186,10 +193,13 @@ class MembersController extends Controller
     {
         //
 
+
+        $ministries = Ministry::get()->where('type', '=', 1);
+        $groups = Ministry::get()->where('type', '=', 2);
         // $member = Member::findOrFail($member);
 
         // return $member;
-        return view('members.edit', compact('member'));
+        return view('members.edit', compact('member', 'ministries', 'groups'));
     }
 
     /**
@@ -277,10 +287,15 @@ class MembersController extends Controller
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
                 'revised_rec_time' => request('revised_record_time'),
-                'updated_by' => auth()->user()->name
+                'updated_by' => auth()->user()->name,
+
+                'slug' => str_slug(request('firstname')." ".request('surname')." ".(request('branch'))),
              ]);
 
             ($n)? toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.") : "";
+            if($n && $request->submit === 'save'){
+                return redirect('/members/'.$member->id);
+            }
             return redirect('/members');
         }
 

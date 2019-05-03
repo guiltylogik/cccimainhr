@@ -10,8 +10,10 @@ Dashboard
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> *Generate Report</a>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-icon-split btn-primary shadow-sm">
+        <span class="icon text-white-50">
+                <i class="fas fa-download fa-sm text-white-50"></i>
+        </span> <span class="text">*Generate Report</span></a>
 </div>
 
 <!-- Content Row -->
@@ -48,8 +50,11 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-auto">
-                <a href="{{url('/members')}}" class="btn btn-sm btn-success shadow-sm text-md font-weight-bold align-content-center"><i class="fas fa-eye fa-sm"></i> View</a>
+            <div class="col-auto text-center">
+                <a href="{{url('/members')}}" class="btn btn-sm btn-icon-split btn-success shadow-sm text-md font-weight-bold">
+                    <span class="icon text-white-50">
+                            <i class="fas fa-eye fa-sm"></i>
+                    </span><span class="text"> View</span></a>
             </div>
         </div>
     </div>

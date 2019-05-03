@@ -19,6 +19,7 @@ class CreateMembersTable extends Migration
             $table->char('firstname', 32);
             $table->char('other_name', 32)->nullable();
             $table->char('surname', 32);
+            $table->string('slug');
             $table->string('email')->unique()->nullable();
             $table->date('dob')->nullable();
             $table->char('gender', 11)->nullable();
@@ -38,8 +39,6 @@ class CreateMembersTable extends Migration
             $table->tinyInteger('number_of_children')->nullable();
             $table->string('children_names')->nullable();
             $table->string('hear_about_us')->nullable();
-            $table->string('ministries')->nullable();
-            $table->string('group_n_dept')->nullable();
             $table->string('branch')->nullable();
             $table->string('cov_fam_name')->nullable();
             $table->string('covenant_leader')->nullable();

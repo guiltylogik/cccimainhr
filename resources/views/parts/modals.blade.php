@@ -16,15 +16,19 @@
           <span class=" text-lg font-weight-bold text-uppercase text-gray-900">delete</span> this
           <span class=" text-lg font-weight-bold text-danger text-uppercase">record?</span>
           <div class="">
-          <span class="text-uppercase text-lg font-weight-bold text-danger">This cannot be undone.</span>
+          <span class="text-uppercase text-lg font-weight-bold text-danger">NB: This cannot be undone.</span>
           </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <form id="deleteForm" action="" method="post">
+        <div class="modal-footer text-center">
+          {{-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> --}}
+          <form id="deleteForm" action="" method="post" class="">
             @method('DELETE')
             @csrf
-            <button class="btn btn-danger shadow-sm align-content-center font-weight-bold" ><i class="fas fa-trash-alt fa-sm"></i> Delete </button>
+            <button class="btn btn-danger shadow-sm font-weight-bold btn-icon-split" >
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash-alt fa-sm"></i>
+                </span>
+                <span class="text">I uderstand, Delete.</span> </button>
           </form>
         </div>
       </div>
