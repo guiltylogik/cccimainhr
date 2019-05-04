@@ -328,7 +328,7 @@ View -
                                 <label>Number of Children:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$member->name_of_children}}</p>
+                                <p>{{$member->number_of_children}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -336,7 +336,16 @@ View -
                                 <label>Name of Children and Date of Birth:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$member->name_of_children}}</p>
+                                <p>{{json_decode($member->children_names)}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Heard About Calvary:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{$member->hear_about_us}}</p>
                             </div>
                         </div>
                         <hr>
@@ -398,15 +407,28 @@ View -
                                 <label>Ministry: </label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$member->ministries}}</p>
+                               @if ($ministries->count()>0)
+                               @foreach ($ministries as $ministry)
+                               <p>{{$ministry->name}}</p>
+                               @endforeach
+                               @else
+                               <p>Not in any/or no Ministry(ies) Listed yet.</p>
+                               @endif
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Groups/Department: </label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$member->group_n_dept}}</p>
+                                @if ($ministries->count()>0)
+                                @foreach ($groups as $group)
+                                <p>{{$group->name}}</p>
+                                @endforeach
+                                @else
+                               <p>Not in any/or no Group(s) Listed yet.</p>
+                               @endif
                             </div>
                         </div>
                     </div>

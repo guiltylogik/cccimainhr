@@ -25,7 +25,12 @@ class Member extends Model
     //     }
 
 
-    public function ministries(){
+    public function ministries()
+    {
         return $this->belongsToMany(Ministry::class);
+    }
+
+    public function getGroup($member, $type){
+        return $member->ministries->where('type', '=', $type);
     }
 }

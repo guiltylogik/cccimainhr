@@ -140,7 +140,7 @@ Add Member
             </div>
             <div class="form-group">
                 <input type="text" class="form-control form-control-user text-center" name="childrens_name"
-                    id="childrens_name" placeholder="Children's names">
+                    id="childrens_name" placeholder="Children's names and date of births seprated by comma">
             </div>
 
             <hr>
@@ -155,16 +155,15 @@ Add Member
             <div class="form-group text-gray-100">
 
                 <label for="about_us" class=" form-control-user">How did you hear about us?</label>
-                <input type="radio" class=" form-control-user" id="friend" name="about_us" value="friend"
-                    {{old('about_us') == 'friend'? 'checked':''}} required> Friend
-                <input type="radio" class=" form-control-user" id="evangelism" name="about_us" value="evangelism"
-                    {{old('about_us') == 'evangelism'? 'checked':''}}> Evangelism
+                <input type="radio" class=" form-control-user" id="friend" name="about_us" value="Friend"
+                    {{old('about_us') == 'Friend'? 'checked':''}} required> Friend
+                <input type="radio" class=" form-control-user" id="evangelism" name="about_us" value="Evangelism"
+                    {{old('about_us') == 'Evangelism'? 'checked':''}}> Evangelism
                 <input type="radio" class=" form-control-user" id="social_media" name="about_us" value="social_media"
-                    {{old('about_us') == 'social_media'? 'checked':''}}> Social Media
+                    {{old('about_us') == 'Social Media'? 'checked':''}}> Social Media
                 <input type="radio" class=" form-control-user" id="event" name="about_us" value="event"
                     {{old('about_us') == 'event'? 'checked':''}}> Event
-                <input type="radio" class=" form-control-user" id="other" name="about_us" value="other"
-                    {{old('about_us') == 'other'? 'checked':''}}> other
+                <input type="text" class="form-control form-control-user text-center" name="about_us" placeholder="Other? Enter Description." >
 
             </div>
 
@@ -174,27 +173,13 @@ Add Member
                 <h1 class="h4 text-gray-100 mb-3">B</h1>
             </div>
 
-            {{-- <div class="form-group row">
-                <div class="col-sm-12">
-                  <label for="ministries" class=" form-control-user">Ministries:</label>
-                    <input type="checkbox" class=" form-control-user" id="mens_ministry" name="ministries[]" value="Men's Ministry"> Men's Ministry
-                    <input type="checkbox" class=" form-control-user" id="womens_ministry" name="ministries[]" value="Women's Ministry"> Women's Ministry 
-                    <input type="checkbox" class=" form-control-user" id="youth_ministry" name="ministries[]" value="Youth Ministry"> Youth Ministry 
-                    <input type="checkbox" class=" form-control-user" id="childrens_ministry" name="ministries[]" value="Children's Ministry"> Children's Ministry 
-                    <input type="checkbox" class=" form-control-user" id="worship_angels" name="ministries[]" value="Worship Angels Dance Ministry"> Worship Angels Dance Ministry 
-                    <input type="checkbox" class=" form-control-user" id="prayer_ministry" name="ministries[]" value="Prayer Warriors and Intercessory Ministry"> Prayer Warriors and Intercessory Ministry 
-                    <input type="checkbox" class=" form-control-user" id="visitation_ministry" name="ministries[]" value="Visitaion Ministry"> Visitaion Ministry 
-                    <input type="checkbox" class=" form-control-user" id="evangelism_ministry" name="ministries[]" value="Evangelism Ministry"> Evangelism Ministry 
-                  </div>
-                </div> --}}
-
             <div class="form-group row text-gray-100">
                 <div class="col-sm-6">
                     <label for="ministries" class=" form-control-user text-uppercase"><b>Ministries:</b></label><br>
 
                     @foreach ($ministries as $ministry)
                     <input type="checkbox" class=" form-control-user" id="{{$ministry->id}}" name="ministries[]"
-                    value="{{$ministry->id}}" {{old('') == $ministry->id? 'checked': ''}}> {{$ministry->ministry}}<br>
+                    value="{{$ministry->id}}" {{(is_array(old('ministries')) and in_array($ministry->id, old('ministries')))? ' checked ': ''}}> {{$ministry->name}}<br>
                     @endforeach
 
                 </div>
@@ -202,8 +187,8 @@ Add Member
                     <label for="group_n_departments" class=" form-control-user text-uppercase"><b>Groups &amp;
                             Departments:</b></label><br>
                             @foreach ($groups as $group)
-                            <input type="checkbox" class=" form-control-user" id="{{$ministry->id}}" name="ministries[]"
-                            value="{{$group->id}}" {{old('') == $group->id? 'checked': ''}}> {{$group->ministry}}<br>
+                            <input type="checkbox" class=" form-control-user" id="{{$group->id}}" name="ministries[]"
+                            value="{{$group->id}}" {{(is_array(old('ministries')) and in_array($group->id, old('ministries')))? ' checked ': ''}} > {{$group->name}}<br>
                             @endforeach
                 </div>
             </div>

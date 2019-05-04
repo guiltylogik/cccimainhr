@@ -119,41 +119,43 @@ class MembersController extends Controller
                 $img = 'generic.jpg';
             }
 
-             Member::create([
+             $member = Member::create([
                 'image' => $img,
                 'firstname' => ucfirst(request('firstname')),
                 'other_name' => ucfirst(request('other_name')),
                 'surname' => ucfirst(request('surname')),
                 'email' => request('email'),
                 'dob' => request('dob'),
-                'gender' => request('gender'),
-                'marital_status' => request('marital_status'),
-                'res_address' => request('residential_address'),
-                'postal_address' => request('postal_address'),
+                'gender' => ucfirst(request('gender')),
+                'marital_status' => ucfirst(request('marital_status')),
+                'res_address' => title_case(request('residential_address')),
+                'postal_address' => title_case(request('postal_address')),
                 'phone' => request('mobile_number'),
                 'office_number' => request('office_number'),
                 'other_number' => request('other_number'),
-                'profession' => request('profession'),
-                'position' => request('position'),
-                'office_address' => request('office_address'),
-                'emergency_contact_person' => request('emergency_con_person'),
+                'profession' => title_case(request('profession')),
+                'position' => title_case(request('position')),
+                'office_address' => title_case(request('office_address')),
+                'emergency_contact_person' => title_case(request('emergency_con_person')),
                 'emergency_contact_number' => request('emergency_con_phone'),
-                'emergency_contact_address' => request('emergency_con_address'),
-                'name_of_spouse'  => request('name_of_spouse'),
+                'emergency_contact_address' => title_case(request('emergency_con_address')),
+                'name_of_spouse'  => title_case(request('name_of_spouse')),
                 'number_of_children'  => request('number_of_children'),
-                'children_names'  => request('childrens_name'),
-                'hear_about_us'  => request('about_us'),
-                'branch' => request('branch'),
-                'cov_fam_name' => request('covenant_fam_name'),
-                'covenant_leader' => request('covenant_leader'),
+                'children_names'  => \json_encode(request('childrens_name')),
+                'hear_about_us'  => ucfirst(request('about_us')),
+                'branch' => title_case(request('branch')),
+                'cov_fam_name' => title_case(request('covenant_fam_name')),
+                'covenant_leader' => title_case(request('covenant_leader')),
                 'covenant_leader_num' => request('covenat_leader_phone'),
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
                 'revised_rec_time' => request('revised_record_time'),
 
                 'slug' => str_slug(request('firstname')." ".request('surname')." ".(request('branch'))),
-                'added_by' => auth()->user()->name
+                'added_by' => title_case(auth()->user()->name)
              ]);
+
+            $member->ministries()->attach(request('ministries'));
 
             toastr('New Member Record Added Successfully');
 
@@ -176,11 +178,13 @@ class MembersController extends Controller
     public function show(Member $member)
     {
         //
-
-        // $member = Member::findOrFail($member);
-
         // return $member;
-        return view('members.show', compact('member'));
+        // $member = Member::find($member->id);
+
+        $ministries = $member->ministries->where('type', '=', 1);
+        $groups = $member->ministries->where('type', '=', 2);
+
+        return view('members.show', compact('member', 'ministries', 'groups'));
     }
 
     /**
@@ -193,13 +197,30 @@ class MembersController extends Controller
     {
         //
 
+        $in_group = array();
+        $about_us = array();
+
+        array_push($about_us, 'Friend', 'Evangelism', 'Event', 'Social Media');
+
+        // return $about_us;
+        // $ministry_ids = Ministry::select('id')->get();
+
+        // foreach($ministry_ids as $ids){
+        //     $ministry_id[] =  $ids->id;
+        // }
 
         $ministries = Ministry::get()->where('type', '=', 1);
         $groups = Ministry::get()->where('type', '=', 2);
+
+        foreach($member->ministries as $ids){
+            $in_group[] = $ids->id;
+        }
+        // return $in_group;
         // $member = Member::findOrFail($member);
 
         // return $member;
-        return view('members.edit', compact('member', 'ministries', 'groups'));
+        return view('members.edit',
+        compact('member', 'ministries', 'groups', 'in_group', 'about_us'));
     }
 
     /**
@@ -258,42 +279,41 @@ class MembersController extends Controller
                 'image' => $img_name,
                 'firstname' => ucfirst(request('firstname')),
                 'other_name' => ucfirst(request('other_name')),
-                'surname' => \ucfirst(request('surname')),
+                'surname' => ucfirst(request('surname')),
                 'email' => request('email'),
                 'dob' => request('dob'),
-                'gender' => request('gender'),
-                'marital_status' => request('marital_status'),
-                'res_address' => request('residential_address'),
-                'postal_address' => request('postal_address'),
+                'gender' => ucfirst(request('gender')),
+                'marital_status' => ucfirst(request('marital_status')),
+                'res_address' => title_case(request('residential_address')),
+                'postal_address' => title_case(request('postal_address')),
                 'phone' => request('mobile_number'),
                 'office_number' => request('office_number'),
                 'other_number' => request('other_number'),
-                'profession' => request('profession'),
-                'position' => request('position'),
-                'office_address' => request('office_address'),
-                'emergency_contact_person' => request('emergency_con_person'),
+                'profession' => title_case(request('profession')),
+                'position' => title_case(request('profession')),
+                'office_address' => title_case(request('office_address')),
+                'emergency_contact_person' => title_case(request('emergency_con_person')),
                 'emergency_contact_number' => request('emergency_con_phone'),
-                'emergency_contact_address' => request('emergency_con_address'),
-                'name_of_spouse'  => request('name_of_spouse'),
+                'emergency_contact_address' => title_case(request('emergency_con_address')),
+                'name_of_spouse'  => title_case(request('name_of_spouse')),
                 'number_of_children'  => request('number_of_children'),
-                'children_names'  => request('childrens_name'),
-                'hear_about_us'  => request('about_us'),
-                'ministries'  => json_encode(request('ministries')),
-                'group_n_dept'  => json_encode(request('group_n_departments')),
-                'branch' => request('branch'),
-                'cov_fam_name' => request('covenant_fam_name'),
-                'covenant_leader' => request('covenant_leader'),
+                'children_names'  => json_encode(request('childrens_name')),
+                'hear_about_us'  => ucfirst(request('about_us')),
+                'branch' => title_case(request('branch')),
+                'cov_fam_name' => title_case(request('covenant_fam_name')),
+                'covenant_leader' => title_case(request('covenant_leader')),
                 'covenant_leader_num' => request('covenat_leader_phone'),
                 'date_received' => request('date_received'),
                 'revised_rec_date' => request('revised_record_date'),
                 'revised_rec_time' => request('revised_record_time'),
-                'updated_by' => auth()->user()->name,
+                'updated_by' => title_case(auth()->user()->name),
 
                 'slug' => str_slug(request('firstname')." ".request('surname')." ".(request('branch'))),
              ]);
 
             ($n)? toastr($request->firstname." ".$request->surname."'s Record Updated, Successfully.") : "";
             if($n && $request->submit === 'save'){
+                $member->ministries()->sync(request('ministries'));
                 return redirect('/members/'.$member->id);
             }
             return redirect('/members');

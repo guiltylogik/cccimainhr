@@ -45,18 +45,18 @@ Edit -
                 <div class="col-sm-3 text-gray-100">
                     <label for="gender" class=" form-control-user">Sex: </label>
                     <input type="radio" class=" form-control-user" id="male" name="gender" value="male"
-                        {{($member->gender=='male')? 'checked':""}} required> Male
+                        {{($member->gender=='Male')? 'checked':""}} required> Male
                     <input type="radio" class=" form-control-user" id="female" name="gender" value="female"
-                        {{($member->gender=='female')? 'checked':""}} required> Female
+                        {{($member->gender=='Female')? 'checked':""}} > Female
                 </div>
                 <div class="col-sm-6 text-gray-100">
                     <label for="marital_status" class=" form-control-user">Marital Status:</label>
                     <input type="radio" class=" form-control-user" id="single" name="marital_status" value="single"
-                        {{($member->marital_status=='single')? 'checked':""}} required> Single
+                        {{($member->marital_status=='Single')? 'checked':""}} required> Single
                     <input type="radio" class=" form-control-user" id="married" name="marital_status" value="married"
-                        {{($member->marital_status=='married')? 'checked':""}}> Married
+                        {{($member->marital_status=='Married')? 'checked':""}}> Married
                     <input type="radio" class=" form-control-user" id="divorced" name="marital_status" value="divorced"
-                        {{($member->marital_status=='divorced')? 'checked':""}}> Divorced
+                        {{($member->marital_status=='Divorced')? 'checked':""}}> Divorced
                     <input type="radio" class=" form-control-user" id="widowed" name="marital_status" value="widowed"
                         {{($member->marital_status=='Widowed')? 'checked':""}}> Widowed
                 </div>
@@ -142,7 +142,7 @@ Edit -
             </div>
             <div class="form-group">
                 <input type="text" class="form-control form-control-user text-center" name="childrens_name"
-                    id="childrens_name" placeholder="Children's names">
+            id="childrens_name" placeholder="Children's names and date of births seprated by comma" value="{{json_decode($member->children_names)}}">
             </div>
 
             <hr>
@@ -157,16 +157,17 @@ Edit -
             <div class="form-group text-gray-100">
 
                 <label for="about_us" class=" form-control-user">How did you hear about us?</label>
-                <input type="radio" class=" form-control-user" id="friend" name="about_us" value="friend"
-                    {{($member->hear_about_us=='friend')? 'checked':""}}> Friend
-                <input type="radio" class=" form-control-user" id="evangelism" name="about_us" value="evangelism"
-                    {{($member->hear_about_us=='friend')? 'checked':""}}> Evangelism
-                <input type="radio" class=" form-control-user" id="social_media" name="about_us" value="social_media"
-                    {{($member->hear_about_us=='social_media')? 'checked':""}}> Social Media
-                <input type="radio" class=" form-control-user" id="event" name="about_us" value="event"
-                    {{($member->hear_about_us=='event')? 'checked':""}}> Event
-                <input type="radio" class=" form-control-user" id="other" name="about_us" value="other"
-                    {{($member->hear_about_us=='other')? 'checked':""}}> other
+                <input type="radio" class=" form-control-user" id="friend" name="about_us" value="Friend"
+                    {{($member->hear_about_us=='Friend')? 'checked':""}}> Friend
+                <input type="radio" class=" form-control-user" id="evangelism" name="about_us" value="Evangelism"
+                    {{($member->hear_about_us=='Evangelism')? 'checked':""}}> Evangelism
+                <input type="radio" class=" form-control-user" id="social_media" name="about_us" value="Social Media"
+                    {{($member->hear_about_us=='Social Media')? 'checked':""}}> Social Media
+                <input type="radio" class=" form-control-user" id="event" name="about_us" value="Event"
+                    {{($member->hear_about_us=='Event')? 'checked':""}}> Event
+                {{-- <input type="radio" class=" form-control-user" id="other" name="about_us" value="other"
+                    {{($member->hear_about_us=='other')? 'checked':""}}> other --}}
+            <input type="text" class="form-control form-control-user text-center" name="about_us" value="{{!(in_array($member->hear_about_us, $about_us)) ? $member->hear_about_us:'' }}" placeholder="Other? Enter Description." >
 
             </div>
 
@@ -176,27 +177,13 @@ Edit -
                 <h1 class="h4 text-gray-100 mb-3">B</h1>
             </div>
 
-            {{-- <div class="form-group row">
-        <div class="col-sm-12">
-          <label for="ministries" class=" form-control-user">Ministries:</label>
-            <input type="checkbox" class=" form-control-user" id="mens_ministry" name="ministries[]" value="Men's Ministry"> Men's Ministry
-            <input type="checkbox" class=" form-control-user" id="womens_ministry" name="ministries[]" value="Women's Ministry"> Women's Ministry 
-            <input type="checkbox" class=" form-control-user" id="youth_ministry" name="ministries[]" value="Youth Ministry"> Youth Ministry 
-            <input type="checkbox" class=" form-control-user" id="childrens_ministry" name="ministries[]" value="Children's Ministry"> Children's Ministry 
-            <input type="checkbox" class=" form-control-user" id="worship_angels" name="ministries[]" value="Worship Angels Dance Ministry"> Worship Angels Dance Ministry 
-            <input type="checkbox" class=" form-control-user" id="prayer_ministry" name="ministries[]" value="Prayer Warriors and Intercessory Ministry"> Prayer Warriors and Intercessory Ministry 
-            <input type="checkbox" class=" form-control-user" id="visitation_ministry" name="ministries[]" value="Visitaion Ministry"> Visitaion Ministry 
-            <input type="checkbox" class=" form-control-user" id="evangelism_ministry" name="ministries[]" value="Evangelism Ministry"> Evangelism Ministry 
-          </div>
-        </div> --}}
-
         <div class="form-group row text-gray-100">
             <div class="col-sm-6">
                 <label for="ministries" class=" form-control-user text-uppercase"><b>Ministries:</b></label><br>
 
                 @foreach ($ministries as $ministry)
                 <input type="checkbox" class=" form-control-user" id="{{$ministry->id}}" name="ministries[]"
-                value="{{$ministry->id}}" {{old('') == $ministry->id? 'checked': ''}}> {{$ministry->ministry}}<br>
+                value="{{$ministry->id}}" {{(in_array($ministry->id, $in_group))? 'checked': ''}}> {{$ministry->name}}<br>
                 @endforeach
 
             </div>
@@ -205,7 +192,7 @@ Edit -
                         Departments:</b></label><br>
                         @foreach ($groups as $group)
                         <input type="checkbox" class=" form-control-user" id="{{$ministry->id}}" name="ministries[]"
-                        value="{{$group->id}}" {{old('') == $group->id? 'checked': ''}}> {{$group->ministry}}<br>
+                        value="{{$group->id}}" {{(in_array($group->id, $in_group))? 'checked': ''}}> {{$group->name}}<br>
                         @endforeach
             </div>
         </div>
