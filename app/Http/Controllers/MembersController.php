@@ -36,7 +36,7 @@ class MembersController extends Controller
         // dd($members);
 
         return view('members.members', ['members' => $members]);
-        // return view('members.members', compact('members'));
+        // return view('members.test');
     }
 
     /**
@@ -143,6 +143,7 @@ class MembersController extends Controller
                 'number_of_children'  => request('number_of_children'),
                 'children_names'  => \json_encode(request('childrens_name')),
                 'hear_about_us'  => ucfirst(request('about_us')),
+                'about_us_other'  => ucfirst(request('about_us_other')),
                 'branch' => title_case(request('branch')),
                 'cov_fam_name' => title_case(request('covenant_fam_name')),
                 'covenant_leader' => title_case(request('covenant_leader')),
@@ -180,6 +181,8 @@ class MembersController extends Controller
         //
         // return $member;
         // $member = Member::find($member->id);
+
+        // return Member::withTrashed()->find($member);
 
         $ministries = $member->ministries->where('type', '=', 1);
         $groups = $member->ministries->where('type', '=', 2);
@@ -290,7 +293,7 @@ class MembersController extends Controller
                 'office_number' => request('office_number'),
                 'other_number' => request('other_number'),
                 'profession' => title_case(request('profession')),
-                'position' => title_case(request('profession')),
+                'position' => title_case(request('position')),
                 'office_address' => title_case(request('office_address')),
                 'emergency_contact_person' => title_case(request('emergency_con_person')),
                 'emergency_contact_number' => request('emergency_con_phone'),
@@ -299,6 +302,7 @@ class MembersController extends Controller
                 'number_of_children'  => request('number_of_children'),
                 'children_names'  => json_encode(request('childrens_name')),
                 'hear_about_us'  => ucfirst(request('about_us')),
+                'about_us_other'  => ucfirst(request('about_us_other')),
                 'branch' => title_case(request('branch')),
                 'cov_fam_name' => title_case(request('covenant_fam_name')),
                 'covenant_leader' => title_case(request('covenant_leader')),
@@ -334,27 +338,53 @@ class MembersController extends Controller
 
         // Member::findOrFail($member)->delete();
 
-        // $member = Member::findOrFail($member);
 
-        // dd("Deleted ".$member->first_name."'s Record");
+        // return $member;
+        if(request()->type === "delete"){
 
-        // if($member->delete()){
+            // $member = Member::onlyTrashed()->find($member);
 
-        //     toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
+            if ($member->image !== 'generic.jpg')  {
 
-        // }
+               $img_path = public_path('img/members/');
+               $img = [$img_path.$member->image, $img_path.'thumbnail/'.$member->image];
+
+               File::delete($img);
+            }
+
+            $member->ministries()->sync([]);
+            $member->forceDelete();
+            toastError($member->firstname." ".$member->surname."'s Record deleted permanently");
+
+            return redirect(route('trash'));
+        }
+
+        if($member->delete()){
+
+            toastError($member->firstname." ".$member->surname."'s Record moved to trash successfully");
+
+        }
 
 
-        toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
+        // toastError($member->firstname." ".$member->surname."'s Record deleted successfully");
         return redirect('/members');
 
     }
 
-    // public function destroy(Member $member)
-    // {
-    //     //
+    public function trash()
+    {
+        //
 
-    //     dd('Deleted -> '.$member);
-    // }
+        $deleted  = Member::onlyTrashed()->get();
+
+        return view('members.trash', compact('deleted'));
+    }
+
+    public function restore(Member $member)
+    {
+        $member->restore();
+        toastr($member->firstname." ".$member->surname."'s Restored successfully");
+        return back();
+    }
 
 }

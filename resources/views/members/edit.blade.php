@@ -136,7 +136,7 @@ Edit -
                         placeholder="Name of Spouse" value="{{$member->name_of_spouse}}">
                 </div>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user text-center" name="number_of_children"
+                    <input type="number" class="form-control form-control-user text-center" name="number_of_children" value="{{$member->number_of_children}}"
                         id="number_of_children" placeholder="Number of Children">
                 </div>
             </div>
@@ -154,20 +154,20 @@ Edit -
                 <h1 class="h4 text-gray-100 mb-3">A</h1>
             </div>
 
-            <div class="form-group text-gray-100">
+            <div class="form-group text-gray-100 text-center">
 
                 <label for="about_us" class=" form-control-user">How did you hear about us?</label>
                 <input type="radio" class=" form-control-user" id="friend" name="about_us" value="Friend"
                     {{($member->hear_about_us=='Friend')? 'checked':""}}> Friend
                 <input type="radio" class=" form-control-user" id="evangelism" name="about_us" value="Evangelism"
                     {{($member->hear_about_us=='Evangelism')? 'checked':""}}> Evangelism
-                <input type="radio" class=" form-control-user" id="social_media" name="about_us" value="Social Media"
-                    {{($member->hear_about_us=='Social Media')? 'checked':""}}> Social Media
+                <input type="radio" class=" form-control-user" id="social_media" name="about_us" value="Social media"
+                    {{($member->hear_about_us=='Social media')? 'checked':""}}> Social media
                 <input type="radio" class=" form-control-user" id="event" name="about_us" value="Event"
                     {{($member->hear_about_us=='Event')? 'checked':""}}> Event
-                {{-- <input type="radio" class=" form-control-user" id="other" name="about_us" value="other"
-                    {{($member->hear_about_us=='other')? 'checked':""}}> other --}}
-            <input type="text" class="form-control form-control-user text-center" name="about_us" value="{{!(in_array($member->hear_about_us, $about_us)) ? $member->hear_about_us:'' }}" placeholder="Other? Enter Description." >
+                <input type="radio" class=" form-control-user" id="event" name="about_us" value="Other"
+                    {{($member->hear_about_us=='Other')? 'checked':""}}> Other
+            <input type="text" class="form-control form-control-user text-center" name="about_us_other" value="{{($member->hear_about_us=='Other' and $member->hear_about_us != 'NULL') ? $member->about_us_other:'' }}" placeholder="Other? Enter Description." >
 
             </div>
 
@@ -270,8 +270,8 @@ Edit -
                         class="btn btn-success btn-user align-content-center"><i class="fas fa-address-card fa-sm"></i>
                         Update &amp; View</button>
                     <a class="btn btn-danger btn-user align-content-center delete-member" href="#" data-toggle="modal"
-                        data-target="#deleteModal" data-url="{{url('members',$member->id)}}">
-                        <i class="fas fa-user-times fa-sm"></i> Delete Record
+                        data-target="#deleteModal" data-status="trash" data-url="{{url('members',$member->id)}}">
+                        <i class="fas fa-user-times fa-sm"></i> Trash Record
                     </a>
                 </div>
                 <div class="col-sm-4 mb-sm-0"></div>

@@ -92,13 +92,19 @@ Dashboard
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> Trashed Record(s)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$deleted}}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        <i class="fas fa-trash fa-2x text-danger"></i>
                     </div>
                 </div>
+            </div>
+            <div class="col-auto text-center">
+                <a href="{{url('/members/trashed')}}" class="btn btn-sm btn-icon-split btn-warning shadow-sm text-md font-weight-bold">
+                    <span class="icon text-white-50">
+                            <i class="fas fa-eye fa-sm"></i>
+                    </span><span class="text"> View Trashed</span></a>
             </div>
         </div>
     </div>
@@ -290,5 +296,11 @@ Dashboard
     </div>
 </div>
 
+
+@endsection
+
+@section('script')
+
+<script src=" {{asset('js/demo/chart-area-demo.js')}} "></script>
 
 @endsection

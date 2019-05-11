@@ -172,6 +172,7 @@ return [
         'number_of_children' => 'number of children',
         'children_names' => 'children\'s name',
         'hear_about_us' => 'hear about us',
+        'about_us_other' => 'hear about us other input',
         'ministries' => 'ministries',
         'group_n_dept' => 'groups and departments',
         'branch' => 'branch',

@@ -168,6 +168,18 @@ View -
                 Add Member
             </span>
           </a> --}}
+        @if ($member->deleted_at)
+        <a href="/members/{{$member->id}}/edit" class="btn btn-sm btn-warning shadow-sm myTooltip btn-icon-split"
+            data-placement="top" title="Edit Record"> <span class="icon text-white-50">
+                <i class="fas fa-undo fa-sm"></i></span> <span class="text">Restore</span> </a>
+        <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip btn-icon-split float-right" href="#"
+            data-toggle="modal" data-placement="bottom" title="Delete Record" data-id=" {{$member->id}} " data-details="{{ $member->firstname}}
+                    {{($member->other_name)?$member->other_name[0].".":" "}}
+                  {{ $member->surname}}'s" data-status="delete" data-target="#deleteModal"
+            data-url="{{ url('members', $member->id) }}">
+            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span class="text"> Delete Permanently</span>
+        </a>
+        @else
         <a href="#" class="btn btn btn-sm btn-info shadow-sm btn-icon-split myTooltip" data-placement="left"
             title="View Record"><span class="icon text-white-50">
                 <i class="fas fa-print fa-sm"></i>
@@ -178,9 +190,11 @@ View -
         <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip btn-icon-split float-right" href="#"
             data-toggle="modal" data-placement="bottom" title="Delete Record" data-id=" {{$member->id}} " data-details="{{ $member->firstname}}
                     {{($member->other_name)?$member->other_name[0].".":" "}}
-                  {{ $member->surname}}'s" data-target="#deleteModal" data-url="{{ url('members', $member->id) }}">
-            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span class="text"> Delete</span>
+                  {{ $member->surname}}'s" data-status="trash" data-target="#deleteModal"
+            data-url="{{ url('members', $member->id) }}">
+            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span class="text"> Trash</span>
         </a>
+        @endif
     </div>
     <div class="card-body">
 
@@ -345,7 +359,9 @@ View -
                                 <label>Heard About Calvary:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{$member->hear_about_us}}</p>
+                                <p>{{($member->hear_about_us)}}</p>
+                                <p>{{($member->hear_about_us=='Other' and $member->hear_about_us != 'NULL') ? $member->about_us_other:'' }}
+                                </p>
                             </div>
                         </div>
                         <hr>
@@ -407,13 +423,13 @@ View -
                                 <label>Ministry: </label>
                             </div>
                             <div class="col-md-6">
-                               @if ($ministries->count()>0)
-                               @foreach ($ministries as $ministry)
-                               <p>{{$ministry->name}}</p>
-                               @endforeach
-                               @else
-                               <p>Not in any/or no Ministry(ies) Listed yet.</p>
-                               @endif
+                                @if ($ministries->count()>0)
+                                @foreach ($ministries as $ministry)
+                                <p>{{$ministry->name}}</p>
+                                @endforeach
+                                @else
+                                <p>Not in any/or no Ministry(ies) Listed yet.</p>
+                                @endif
                             </div>
                         </div>
                         <hr>
@@ -427,8 +443,8 @@ View -
                                 <p>{{$group->name}}</p>
                                 @endforeach
                                 @else
-                               <p>Not in any/or no Group(s) Listed yet.</p>
-                               @endif
+                                <p>Not in any/or no Group(s) Listed yet.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -569,23 +585,35 @@ View -
                     <div class="row ">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <a href="#" class="btn btn btn-sm btn-info shadow-sm btn-icon-split myTooltip"
-                                data-placement="left" title="View Record"><span class="icon text-white-50">
-                                    <i class="fas fa-print fa-sm"></i>
-                                </span> <span class="text">Print</span> </a>
-                            <a href="/members/{{$member->id}}/edit"
-                                class="btn btn-sm btn-warning shadow-sm myTooltip btn-icon-split" data-placement="top"
-                                title="Edit Record"> <span class="icon text-white-50">
-                                    <i class="fas fa-edit fa-sm"></i></span> <span class="text">Edit</span> </a>
+                            @if ($member->deleted_at)
                             <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip btn-icon-split" href="#"
-                                data-toggle="modal" data-placement="bottom" title="Delete Record"
-                                data-id=" {{$member->id}} " data-details="{{ $member->firstname}}
-                                {{($member->other_name)?$member->other_name[0].".":" "}}
-                              {{ $member->surname}}'s" data-target="#deleteModal"
-                                data-url="{{ url('members', $member->id) }}">
-                                <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span
-                                    class="text"> Delete</span>
-                            </a>
+                            data-toggle="modal" data-placement="bottom" title="Delete Record"
+                            data-id=" {{$member->id}} " data-status="delete" data-details="{{ $member->firstname}}
+                            {{($member->other_name)?$member->other_name[0].".":" "}}
+                          {{ $member->surname}}'s" data-target="#deleteModal"
+                            data-url="{{ url('members', $member->id) }}">
+                            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span
+                                class="text"> Delete Permanently</span>
+                        </a>
+                            @else
+                            <a href="#" class="btn btn btn-sm btn-info shadow-sm btn-icon-split myTooltip"
+                            data-placement="left" title="View Record"><span class="icon text-white-50">
+                                <i class="fas fa-print fa-sm"></i>
+                            </span> <span class="text">Print</span> </a>
+                        <a href="/members/{{$member->id}}/edit"
+                            class="btn btn-sm btn-warning shadow-sm myTooltip btn-icon-split" data-placement="top"
+                            title="Edit Record"> <span class="icon text-white-50">
+                                <i class="fas fa-edit fa-sm"></i></span> <span class="text">Edit</span> </a>
+                        <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip btn-icon-split" href="#"
+                            data-toggle="modal" data-placement="bottom" title="Delete Record"
+                            data-id=" {{$member->id}} " data-status="trash" data-details="{{ $member->firstname}}
+                            {{($member->other_name)?$member->other_name[0].".":" "}}
+                          {{ $member->surname}}'s" data-target="#deleteModal"
+                            data-url="{{ url('members', $member->id) }}">
+                            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span><span
+                                class="text"> Trash</span>
+                        </a>
+                            @endif
                         </div>
                     </div>
                 </div>

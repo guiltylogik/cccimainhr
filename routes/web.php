@@ -48,8 +48,10 @@ Route::get('/dashboard', 'DashboardController@home')->name('dashboard');
 //  Route::patch('\members\{members}', 'MembersController@update');
 //  Route::delete('\members\{members}', 'MembersController@destroy');
 
-
+Route::get('/members/trashed', 'MembersController@trash')->name('trash');
+Route::get('/members/{member}/restore', 'MembersController@restore')->name('restore');
 Route::resource('/members', 'MembersController'); //Same as above.
+ //Same as above.
 
 // Route::get('/', function () {
 //     return view('dashboard');

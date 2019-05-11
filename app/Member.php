@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Member extends Model
 {
     //
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'image', 'firstname', 'other_name', 'surname', 'slug',
@@ -15,7 +20,7 @@ class Member extends Model
         'profession', 'position', 'office_address', 'emergency_contact_person',
         'emergency_contact_number', 'emergency_contact_address', 'name_of_spouse',
         'number_of_children', 'name_of_children', 'children_names', 'hear_about_us',
-        'branch', 'cov_fam_name', 'covenant_leader', 'covenant_leader_num',
+        'branch', 'cov_fam_name', 'covenant_leader', 'covenant_leader_num', 'about_us_other',
         'date_received', 'revised_rec_date', 'revised_rec_time', 'added_by', 'updated_by'
     ];
 
@@ -24,6 +29,11 @@ class Member extends Model
     //         return 'slug';
     //     }
 
+    // public function resolveRouteBinding($member)
+    // {
+    //     $this->withTrashed();
+    //     return parent::resolveRouteBinding($member);
+    // }
 
     public function ministries()
     {

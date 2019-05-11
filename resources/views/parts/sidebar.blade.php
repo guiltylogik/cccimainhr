@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item font-weight-bold">
         <a class="nav-link" href="{{url('/dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item font-weight-bold">
         <a class="nav-link collapsed" href="members" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-church"></i>
@@ -40,6 +40,7 @@
                 <a class="collapse-item" href="/members"><i class="fas fa-users fa-sm"></i> Members</a>
                 <a class="collapse-item" href="/members/create"><i class="fas fa-user-plus fa-sm "></i> Add
                     Member(s)</a>
+                <a class="collapse-item" href="{{route('trash')}}"><i class="fas fa-trash fa-sm "></i> Trashed Record(s)</a>
                 {{-- <a class="collapse-item" href="/members/edit"><i class="fas fa-wrench fa-sm "></i> Edit Member(s) Records</a> --}}
                 <h6 class="collapse-header ">Feature Update</h6>
                 <a class="collapse-item" href="/haddassah"><i class="fas fa-hand-holding-heart fa-sm "></i>

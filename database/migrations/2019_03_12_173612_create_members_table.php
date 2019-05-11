@@ -39,6 +39,7 @@ class CreateMembersTable extends Migration
             $table->tinyInteger('number_of_children')->nullable();
             $table->string('children_names')->nullable();
             $table->string('hear_about_us')->nullable();
+            $table->string('about_us_other')->nullable();
             $table->string('branch')->nullable();
             $table->string('cov_fam_name')->nullable();
             $table->string('covenant_leader')->nullable();

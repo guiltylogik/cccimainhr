@@ -28,10 +28,18 @@ $(document).ready(function () {
     $('.delete-member').click(function () {
         // var id = $(this).attr('data-id');
         var url = $(this).attr('data-url');
+        var status = $(this).attr('data-status');
         var details = $(this).attr('data-details');
 
         // $("#deleteForm", 'input').val(id);
+        if(status == 'delete'){
+            $("#modal-body").text("Are you sure you want to PErmanently delete this record?");
+            $("#warning").text("NB: This cannot be undone.");
+            $("#text").text("I uderstand, Delete.");
+            $("#type").attr("value", status);
+        }
         $("#details").text(details);
+        $("#status").text(status.toUpperCase());
         $("#deleteForm").attr("action", url);
     });
 });

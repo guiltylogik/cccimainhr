@@ -26,6 +26,13 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::bind('member', function ($member) {
+            if (in_array(Route::currentRouteName(), ['members.show', 'restore', 'members.destroy'])) {
+                return \App\Member::withTrashed()->find($member);
+            }
+            return \App\Member::find($member);
+        });
     }
 
     /**

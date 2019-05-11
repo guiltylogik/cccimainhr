@@ -1,34 +1,27 @@
 @extends('admin.layout')
 
+
 @section('title')
-Members
+    Trashed Record(s).
 @endsection
 
 @section('content')
-
-<style>
-
-
-
-
-</style>
-
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800"><i class="fas fa-users fa-sm"></i> Members</h1>
+    <!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800"><i class="fas fa-trash fa-sm"></i> Trashed</h1>
 <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="/members/create" class="btn btn-success shadow-sm font-weight-bold btn-icon-split">
-            <span class="icon text-white-50"><i class="fas fa-user-plus fa-sm"></i></span>
+        <a href="#" class="btn btn-warning shadow-sm font-weight-bold btn-icon-split">
+            <span class="icon text-white-50"><i class="fas fa-undo fa-sm"></i></span>
             <span class="text">
-                Add Member
+                Restore All
             </span>
         </a>
-        <a href="#" class="btn btn-info shadow-sm font-weight-bold btn-icon-split float-right">
-            <span class="icon text-white-50"><i class="fas fa-print fa-sm"></i></span>
+        <a href="#" class="btn btn-danger shadow-sm font-weight-bold btn-icon-split float-right">
+            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span>
             <span class="text">
-                Print
+                Deleted All
             </span>
         </a>
     </div>
@@ -58,7 +51,7 @@ Members
                     </tr>
                 </tfoot>
 
-                @foreach ($members as $member)
+                @foreach ($deleted as $member)
                 <tbody>
                     <tr>
                         <div class="outerdiv">
@@ -80,14 +73,14 @@ Members
                                     <a href="/members/{{$member->id}}"
                                         class="btn btn btn-sm btn-info shadow-sm myTooltip" data-placement="left"
                                         title="View Record"><i class="fas fa-eye fa-sm"></i> </a>
-                                    <a href="/members/{{$member->id}}/edit"
+                                    <a href="/members/{{$member->id}}/restore"
                                         class="btn btn-sm btn-warning shadow-sm myTooltip" data-placement="top"
-                                        title="Edit Record"><i class="fas fa-edit fa-sm"></i> </a>
+                                        title="Restore Record"><i class="fas fa-undo fa-sm"></i> </a>
                                     <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip" href="#"
-                                        data-toggle="modal" data-placement="bottom" title="Delete Record"
-                                        data-id=" {{$member->id}} " data-status="trash" data-details="{{ $member->firstname}}
+                                        data-toggle="modal" data-placement="bottom" title="Delete Permanently"
+                                        data-id=" {{$member->id}} " data-details="{{ $member->firstname}}
                                         {{($member->other_name)?$member->other_name[0].".":" "}}
-                                      {{ $member->surname}}'s" data-target="#deleteModal"
+                                      {{ $member->surname}}'s" data-target="#deleteModal" data-status="delete"
                                         data-url="{{ url('members', $member->id) }}"><i class="fas fa-trash fa-sm"></i>
                                     </a>
                                 </div>
@@ -106,7 +99,7 @@ Members
 @endsection
 
 @section('modal')
-@if (count($members)>0)
+@if (count($deleted)>0)
 @include('parts.modals')
 @endif
 @endsection

@@ -17,7 +17,8 @@ class DashboardController extends Controller
     public function home(){
 
         $total_members = count(Member::All());
+        $deleted_members = count(Member::onlyTrashed()->get());
 
-        return view('dashboard', ['members'=> $total_members]);
+        return view('dashboard', ['members'=> $total_members, 'deleted' => $deleted_members]);
     }
 }
