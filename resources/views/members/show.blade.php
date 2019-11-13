@@ -169,7 +169,7 @@ View -
             </span>
           </a> --}}
         @if ($member->deleted_at)
-        <a href="/members/{{$member->id}}/edit" class="btn btn-sm btn-warning shadow-sm myTooltip btn-icon-split"
+        <a href="/members/{{$member->id}}/restore" class="btn btn-sm btn-warning shadow-sm myTooltip btn-icon-split"
             data-placement="top" title="Edit Record"> <span class="icon text-white-50">
                 <i class="fas fa-undo fa-sm"></i></span> <span class="text">Restore</span> </a>
         <a class="btn btn-sm btn-danger shadow-sm delete-member myTooltip btn-icon-split float-right" href="#"

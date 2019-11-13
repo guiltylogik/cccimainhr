@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                {{-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> --}}
+                {{-- <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button> --}}
                 <form id="deleteForm" action="" method="post" class="">
                     @method('DELETE')
                     @csrf

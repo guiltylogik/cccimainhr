@@ -11,14 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-
-// Route::get('/home', function () {
-//     return view('layout');
-// });
 
 Route::get('/',function(){
     return view('welcome');
@@ -39,7 +32,6 @@ Route::get('/dashboard', 'DashboardController@home')->name('dashboard');
  *
  */
 
-
 //  Route::get('\members', 'MembersController@index');
 //  Route::get('\members\{member}', 'MembersController@show');
 //  Route::get('\members\create', 'MembersController@create');
@@ -49,9 +41,10 @@ Route::get('/dashboard', 'DashboardController@home')->name('dashboard');
 //  Route::delete('\members\{members}', 'MembersController@destroy');
 
 Route::get('/members/trashed', 'MembersController@trash')->name('trash');
-Route::get('/members/{member}/restore', 'MembersController@restore')->name('restore');
+Route::get('/members/empty', 'MembersController@emptyTrash')->name('empty.trash');
+Route::get('/members/{member}/restore', 'MembersController@restore')->name('members.restore');
+Route::get('/members/restore', 'MembersController@restoreAll')->name('members.restore.all');
 Route::resource('/members', 'MembersController'); //Same as above.
- //Same as above.
 
 // Route::get('/', function () {
 //     return view('dashboard');

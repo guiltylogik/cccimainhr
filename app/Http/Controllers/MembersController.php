@@ -343,18 +343,17 @@ class MembersController extends Controller
         if(request()->type === "delete"){
 
             // $member = Member::onlyTrashed()->find($member);
-
             if ($member->image !== 'generic.jpg')  {
 
-               $img_path = public_path('img/members/');
-               $img = [$img_path.$member->image, $img_path.'thumbnail/'.$member->image];
+                $img_path = public_path('img/members/');
+                $img = [$img_path.$member->image, $img_path.'thumbnail/'.$member->image];
+                dd($img);
+                File::delete($img);
+             }
 
-               File::delete($img);
-            }
-
-            $member->ministries()->sync([]);
-            $member->forceDelete();
-            toastError($member->firstname." ".$member->surname."'s Record deleted permanently");
+             $member->ministries()->sync([]);
+             $member->forceDelete();
+             toastError($member->firstname." ".$member->surname."'s Record deleted permanently");
 
             return redirect(route('trash'));
         }
@@ -371,10 +370,28 @@ class MembersController extends Controller
 
     }
 
+    public function emptyTrash(){
+
+        $trashed = Member::onlyTrashed()->get();
+        foreach($trashed as $trash){
+            if ($trash->image !== 'generic.jpg')  {
+
+                $img_path = public_path('img/members/');
+                $img = [$img_path.$trash->image, $img_path.'thumbnail/'.$trash->image];
+
+                File::delete($img);
+             }
+
+             $trash->ministries()->sync([]);
+             $trash->forceDelete();
+        }
+
+        toastError("Trash Emptied.");
+        return back();
+    }
+
     public function trash()
     {
-        //
-
         $deleted  = Member::onlyTrashed()->get();
 
         return view('members.trash', compact('deleted'));
@@ -385,6 +402,38 @@ class MembersController extends Controller
         $member->restore();
         toastr($member->firstname." ".$member->surname."'s Restored successfully");
         return back();
+    }
+
+    public function restoreAll(){
+
+        $trashed = Member::onlyTrashed()->get();
+
+        // dd($trashed);
+        if(count($trashed) > 0){
+            foreach($trashed as $member){
+                $member->restore();
+            }
+            toastr(count($trashed)." Records Restored Successfully");
+            return redirect(route('members.index'));
+        }
+        toastr("Trash Empty");
+        return back();
+    }
+
+    public function delFun(){
+
+        dd('def function');
+        if ($member->image !== 'generic.jpg')  {
+
+            $img_path = public_path('img/members/');
+            $img = [$img_path.$member->image, $img_path.'thumbnail/'.$member->image];
+
+            File::delete($img);
+         }
+
+         $member->ministries()->sync([]);
+         $member->forceDelete();
+         toastError($member->firstname." ".$member->surname."'s Record deleted permanently");
     }
 
 }

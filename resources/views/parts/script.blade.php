@@ -33,10 +33,19 @@ $(document).ready(function () {
 
         // $("#deleteForm", 'input').val(id);
         if(status == 'delete'){
-            $("#modal-body").text("Are you sure you want to PErmanently delete this record?");
+            $("#modal-body").text("Are you sure you want to Permanently delete this record?");
             $("#warning").text("NB: This cannot be undone.");
             $("#text").text("I uderstand, Delete.");
             $("#type").attr("value", status);
+        }
+
+        //for emptying trash
+        if(status == 'emptyTrash'){
+            $("#exampleModalLabel").text('Empty Trash');
+            $("#modal-body").text("Are you sure you want to Permanently delete these record?");
+            $("#warning").text("NB: This cannot be undone.");
+            $("#text").text("I uderstand, Empty.");
+            $("#deleteForm").attr("method", 'get');
         }
         $("#details").text(details);
         $("#status").text(status.toUpperCase());

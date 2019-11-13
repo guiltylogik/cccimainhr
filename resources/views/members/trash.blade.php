@@ -12,18 +12,20 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="#" class="btn btn-warning shadow-sm font-weight-bold btn-icon-split">
+        <a href="{{route('members.restore.all')}}" class="btn btn-warning shadow-sm font-weight-bold btn-icon-split">
             <span class="icon text-white-50"><i class="fas fa-undo fa-sm"></i></span>
             <span class="text">
                 Restore All
             </span>
         </a>
-        <a href="#" class="btn btn-danger shadow-sm font-weight-bold btn-icon-split float-right">
-            <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span>
-            <span class="text">
-                Deleted All
-            </span>
-        </a>
+        <a class="btn btn-danger shadow-sm btn-icon-split font-weight-bold delete-member float-right" href="#"
+                                        data-toggle="modal" data-id="" data-details=" " data-target="#deleteModal" data-status="emptyTrash"
+                                        data-url="{{ route('empty.trash') }}">
+                                        <span class="icon text-white-50"><i class="fas fa-trash fa-sm"></i></span>
+                                        <span class="text">
+                                                Deleted All
+                                            </span>
+                                    </a>
     </div>
     <div class="card-body">
         <div class="table-responsive text-center">
